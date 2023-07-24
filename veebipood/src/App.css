@@ -1,0 +1,28 @@
+.pilt {
+  height: 500px;
+  width: 650px; 
+}
+
+.pilt:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.pilt:active {
+  border-radius: 10px;
+  transform: rotate(180deg);
+}
+
+.nupp{
+  background-color: plum;
+  color: darkslateblue;
+}
+
+.nupp:hover{
+background-color: fuchsia;
+}
+
+.nupp:active{
+background-color: aliceblue;
+text-decoration: underline;
+}
