@@ -1,0 +1,43 @@
+.nupp {
+  background-color: green;
+  color: lightgrey;
+}
+
+.nupp:hover {
+  height: 50px;
+}
+
+.nupp:active {
+  cursor: grab;
+}
+
+.sinineTekst {
+  color:blue;
+  font-style: italic;
+}
+
+.sinineTekst:hover {
+  font-size: 24px;
+}
+
+.rohelineTekst{
+  color:green;
+  font-weight: bold;
+  border: 5px solid red;
+  position:absolute;
+}
+
+.rohelineTekst:hover{
+  border: 5px solid brown;
+}
+
+.pilt{
+  height: 300px;
+  width: 300px;
+  float: right;
+}
+
+.pilt:hover {
+  border-radius: 50%;
+  opacity: 0.7;
+}
