@@ -11,6 +11,8 @@ function LisaToode() {
   const lisa = () => {
     if (inputiLuger.current.value === "") {
       uuendaSonum("Tühja nimega toodet ei saa lisada!"); 
+    } else if (inputiLuger.current.value.includes("!")){
+      uuendaSonum("Hüümärgiga toodet ei saa lisada!");
     } else {
       uuendaSonum("Toode edukalt lisatud: " + inputiLuger.current.value);
     }
