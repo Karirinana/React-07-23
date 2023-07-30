@@ -1,13 +1,28 @@
-//import logo from './logo.svg';
+import { Link, Route, Routes } from 'react-router-dom';
 import './App.css';
+import Avaleht from '../../kodutoo1/src/pages/Avaleht';
+import Kontakt from '../../kodutoo1/src/pages/Kontakt';
+import Meist from '../../kodutoo1/src/pages/Meist';
 
 function App() {
   return (
     <div className="App">
-      <button className='nupp'>Olen rohelise tagataustaga nupp, mille sees on helehall tekst</button>
-      <p className='sinineTekst'>Olen sinine tekst, millele hiirega peale minnes muuda selle teksti suurus suuremaks</p>
-      <p className='rohelineTekst'>Olen roheline tekst</p>
-      <img src="https://play-lh.googleusercontent.com/8QnH9AhsRfhPott7REiFUXXJLRIxi8KMAP0mFAZpYgd44OTOCtScwXeb5oPe1E4eP4oF" alt="Kits" className='pilt'/>
+      <Link to="/">
+        <button>Avaleht</button>
+      </Link>
+      <Link to="/Meist">
+        <button>Meist</button>
+      </Link>
+      <Link to="/Kontakt">
+        <button>Kontakt</button>
+      </Link>
+      <Routes>
+        <Route path="" exact element={ <Avaleht /> }></Route>
+        <Route path="kontakt" exact element={ <Kontakt /> }></Route>
+        <Route path="meist" exact element={ <Meist /> }></Route>
+      </Routes>
+
+
     </div>
   );
 }

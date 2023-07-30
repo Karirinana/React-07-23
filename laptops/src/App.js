@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Avaleht from './pages/Avaleht';
 import LisaArvuti from './pages/LisaArvuti';
