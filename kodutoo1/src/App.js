@@ -3,6 +3,7 @@ import './App.css';
 import Avaleht from '../../kodutoo1/src/pages/Avaleht';
 import Kontakt from '../../kodutoo1/src/pages/Kontakt';
 import Meist from '../../kodutoo1/src/pages/Meist';
+import Seaded from '../../kodutoo1/src/pages/Seaded';
 import { useRef, useState } from 'react';
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
         <Route path="" exact element={ <Avaleht /> }></Route>
         <Route path="kontakt" exact element={ <Kontakt /> }></Route>
         <Route path="meist" exact element={ <Meist /> }></Route>
+        <Route path="seaded" exact element={ <Seaded /> }></Route>
       </Routes>
 
 

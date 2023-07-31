@@ -26,3 +26,18 @@ background-color: fuchsia;
 background-color: aliceblue;
 text-decoration: underline;
 }
+
+.kuldne {
+  color: goldenrod;
+}
+
+.tume-leht {
+  background-color: black;
+  color: white;
+  min-height: 50vh;
+}
+
+.hele-leht {
+  background-color: aliceblue;
+  min-height: 100vh;
+}
