@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Roboto+Mono&display=swap');
+
 .App {
   text-align: center;
 }
@@ -35,4 +37,14 @@
   to {
     transform: rotate(360deg);
   }
+  
+}
+
+.valitud {
+  font-weight: bold;
+}
+
+* {
+  font-family: 'Lora', serif;
+  font-family: 'Roboto Mono', monospace;
 }

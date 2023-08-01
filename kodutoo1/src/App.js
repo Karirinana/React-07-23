@@ -4,6 +4,9 @@ import Avaleht from '../../kodutoo1/src/pages/Avaleht';
 import Kontakt from '../../kodutoo1/src/pages/Kontakt';
 import Meist from '../../kodutoo1/src/pages/Meist';
 import Seaded from '../../kodutoo1/src/pages/Seaded';
+import Loader from '../../kodutoo1/src/pages/Loader';
+import Leht from '../../kodutoo1/src/pages/Leht';
+
 import { useRef, useState } from 'react';
 
 function App() {
@@ -49,6 +52,8 @@ function App() {
         <Route path="kontakt" exact element={ <Kontakt /> }></Route>
         <Route path="meist" exact element={ <Meist /> }></Route>
         <Route path="seaded" exact element={ <Seaded /> }></Route>
+        <Route path="loader" exact element={ <Loader /> }></Route>
+        <Route path="leht" exact element={ <Leht /> }></Route>
       </Routes>
 
 
