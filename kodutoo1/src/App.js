@@ -6,8 +6,9 @@ import Meist from '../../kodutoo1/src/pages/Meist';
 import Seaded from '../../kodutoo1/src/pages/Seaded';
 import Loader from '../../kodutoo1/src/pages/Loader';
 import Leht from '../../kodutoo1/src/pages/Leht';
-
+import Books from './pages/Books';
 import { useRef, useState } from 'react';
+
 
 function App() {
   const [sisselogitud, muudaSisselogitud] = useState("ei");
@@ -47,6 +48,12 @@ function App() {
       <Link to="/Kontakt">
         <button>Kontakt</button>
       </Link>
+           <Link to="/Seaded">
+        <button>Seaded</button>
+      </Link>
+       <Link to="/Books">
+        <button>Books</button>
+      </Link>
       <Routes>
         <Route path="" exact element={ <Avaleht /> }></Route>
         <Route path="kontakt" exact element={ <Kontakt /> }></Route>
@@ -54,6 +61,7 @@ function App() {
         <Route path="seaded" exact element={ <Seaded /> }></Route>
         <Route path="loader" exact element={ <Loader /> }></Route>
         <Route path="leht" exact element={ <Leht /> }></Route>
+        <Route path="books" exact element={ <Books /> }></Route>
       </Routes>
 
 

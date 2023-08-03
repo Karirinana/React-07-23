@@ -45,7 +45,7 @@ function Poed() {
     }
 
     const filtreeriVahemalt7Tahelised = () => {
-        const vastus = poed.filter(yksPood => yksPood.length === 7);
+        const vastus = poed.filter(yksPood => yksPood.length >= 7);
         uuendaPoed(vastus);
     }
 
