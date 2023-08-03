@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 function Seaded() {
-    const [keel, uuendaKeel] = useState(localStorage.getItem("keel"));
+    const [keel, uuendaKeel] = useState(localStorage.getItem("keel") || "est");
   //  let kasutaja = "sdfdfg";
 
   //  const uuendaKasutaja = () => {
