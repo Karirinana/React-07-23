@@ -1,4 +1,5 @@
 import { Link, Route, Routes } from 'react-router-dom';
+import { useRef, useState } from 'react';
 import './App.css';
 import Avaleht from '../../kodutoo1/src/pages/Avaleht';
 import Kontakt from '../../kodutoo1/src/pages/Kontakt';
@@ -7,7 +8,8 @@ import Seaded from '../../kodutoo1/src/pages/Seaded';
 import Loader from '../../kodutoo1/src/pages/Loader';
 import Leht from '../../kodutoo1/src/pages/Leht';
 import Books from './pages/Books';
-import { useRef, useState } from 'react';
+import Numbrid from './pages/Numbrid';
+
 
 
 function App() {
@@ -54,6 +56,9 @@ function App() {
        <Link to="/Books">
         <button>Books</button>
       </Link>
+      <Link to="/Numbrid">
+        <button>Numbrid</button>
+      </Link>
       <Routes>
         <Route path="" exact element={ <Avaleht /> }></Route>
         <Route path="kontakt" exact element={ <Kontakt /> }></Route>
@@ -62,6 +67,7 @@ function App() {
         <Route path="loader" exact element={ <Loader /> }></Route>
         <Route path="leht" exact element={ <Leht /> }></Route>
         <Route path="books" exact element={ <Books /> }></Route>
+        <Route path="numbrid" exact element={ <Numbrid /> }></Route>
       </Routes>
 
 
