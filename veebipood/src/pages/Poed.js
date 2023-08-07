@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
+import poedFailist from "../data/poed.json";
 
 function Poed() {
-    const [ poed, uuendaPoed] = useState(["Ülemiste", "Viimsi", "Rocca al Mare", "Magistrali", "Vesse", "Kristiine", "Järveotsa"]);
-
+    const [ poed, uuendaPoed] = useState(poedFailist);
+    const poodViide = useRef();
     
     const reset = () => {
-        uuendaPoed(["Ülemiste", "Viimsi", "Rocca al Mare", "Magistrali", "Vesse", "Kristiine", "Järveotsa"]);
+        uuendaPoed(poedFailist);
     }
 
     const sorteeriAZ =() => {
@@ -59,11 +60,27 @@ function Poed() {
         uuendaPoed(vastus);
     }
 
+    const arvutaKokku = () => {
+        let summa = 0;
+        poed.forEach(yksPood => summa = summa + yksPood.length);
+        return summa;
+    }
+
+    const lisa = () => {
+        poed.push(poodViide.current.value);
+        uuendaPoed(poed.slice());
+    }
 
   return (
     <div>
         <button onClick={reset}>Reset</button>
         <div>Poode: {poed.length} tk</div>
+        <div>Tähemärke: {arvutaKokku}</div>
+        <br />
+        <label htmlFor="">Poe nimi</label>
+        <input ref={poodViide} type="text" />
+        <button onClick={lisa}>Lisa</button>
+        
         <br /><br />
         <button onClick={sorteeriAZ}>Sorteeri A-Z</button>
         <button onClick={sorteeriZA}>Sorteeri Z-A</button>

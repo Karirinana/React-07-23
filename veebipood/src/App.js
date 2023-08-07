@@ -10,6 +10,9 @@ import MitteLeitud from './pages/MitteLeitud';
 import Hinnad from './pages/Hinnad';
 import Tooted from './pages/Tooted';
 import Poed from './pages/Poed';
+import HaldaTooted from './pages/HaldaTooted';
+import MuudaToode from './pages/MuudaToode';
+import YksToode from './pages/YksToode';
 
 function App() {
   const [teema, uuendaTeema] = useState(localStorage.getItem("teema"));
@@ -63,6 +66,10 @@ function App() {
         <button className="nupp">Tooted</button>
       </Link>
 
+      <Link to="/halda">
+        <button className="nupp">Halda tooted</button>
+      </Link>
+
       <Routes>
         <Route path="" element={ <Avaleht /> }></Route>
         <Route path="lisa-toode" element={ <LisaToode /> }></Route>
@@ -71,6 +78,9 @@ function App() {
         <Route path="hinnad" element={ <Hinnad /> }></Route>
         <Route path="Poed" element={ <Poed /> }></Route>
         <Route path="tooted" element={ <Tooted /> }></Route>
+        <Route path="halda" element={ <HaldaTooted /> }></Route>
+        <Route path="muuda" element={ <MuudaToode /> }></Route>
+        <Route path="toode" element={ <YksToode /> }></Route>
         <Route path="*" element={ <MitteLeitud /> }></Route>
       </Routes>
     </div>
