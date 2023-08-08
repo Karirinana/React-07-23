@@ -71,6 +71,11 @@ function Poed() {
         uuendaPoed(poed.slice());
     }
 
+    const kustuta = (index) => {
+        poedFailist.splice(index,1);
+        uuendaPoed(poedFailist.slice());
+    }
+
   return (
     <div>
         <button onClick={reset}>Reset</button>
@@ -93,7 +98,10 @@ function Poed() {
         <button onClick={filtreeriVahemalt7Tahelised}>Jäta alles vähemalt 7 tähelised</button>
         <button onClick={filtreeriKesSisaldabIsLyhendit}>Jäta alles 'is' lühendiga</button>
         <button onClick={filtreeriKellelKolmasTahtI}>Jäta alles kellel kolmas täht 'i'</button>
-        {poed.map(yksPood => <div>{yksPood}</div>)}
+        {poed.map((yksPood, index) => (
+        <div>
+            {yksPood} <button onClick={() => kustuta(index)}>x</button>
+        </div>))}
      {/*<div>Ülemiste</div>
         <div>Viimsi</div>
         <div>Rocca al Mare</div>
