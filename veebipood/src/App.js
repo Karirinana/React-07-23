@@ -79,8 +79,8 @@ function App() {
         <Route path="Poed" element={ <Poed /> }></Route>
         <Route path="tooted" element={ <Tooted /> }></Route>
         <Route path="halda" element={ <HaldaTooted /> }></Route>
-        <Route path="muuda" element={ <MuudaToode /> }></Route>
-        <Route path="toode" element={ <YksToode /> }></Route>
+        <Route path="muuda/:index" element={ <MuudaToode /> }></Route>
+        <Route path="toode/:jrknr" element={ <YksToode /> }></Route>
         <Route path="*" element={ <MitteLeitud /> }></Route>
       </Routes>
     </div>

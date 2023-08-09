@@ -24,7 +24,10 @@ function Ostukorv() {
       <button onClick={tyhjenda}>Tühjenda</button>
       {ostukorv.map((toode, jrknr) => (
         <div>
-          {jrknr} {toode}{" "}
+          {jrknr} 
+          <div>{toode.nimi}{" "}</div>
+          <div>{toode.hind}{" "}</div>
+          <img className="pilt" src={toode.pilt} alt="" />
           <button on onClick={() => lisa(toode)}>+</button>{" "}
           <button on onClick={() => kustuta(jrknr)}>X</button>{" "}
         </div>
