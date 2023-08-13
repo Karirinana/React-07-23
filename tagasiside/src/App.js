@@ -3,6 +3,7 @@ import './App.css';
 import Tagasiside from './pages/Tagasiside';
 import TagasisideAndjad from './pages/TagasisideAndjad';
 import Items from './pages/Items';
+import YksikTagasisideAndja from './pages/YksikTagasisideAndja';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/tagasiside" exact element={ <Tagasiside />}></Route>
         <Route path="/andjad" exact element={ <TagasisideAndjad />}></Route>
         <Route path="/items" exact element={ <Items />}></Route>
+        <Route path="/yks-andja/:index" exact element={ <YksikTagasisideAndja />}></Route>
       </Routes>
     </div>
   );
