@@ -13,6 +13,7 @@ import Poed from './pages/Poed';
 import HaldaTooted from './pages/HaldaTooted';
 import MuudaToode from './pages/MuudaToode';
 import YksToode from './pages/YksToode';
+import YksikPood from './pages/YksikPood';
 
 function App() {
   const [teema, uuendaTeema] = useState(localStorage.getItem("teema"));
@@ -77,6 +78,7 @@ function App() {
         <Route path="settings" element={ <Seaded /> }></Route>
         <Route path="hinnad" element={ <Hinnad /> }></Route>
         <Route path="Poed" element={ <Poed /> }></Route>
+        <Route path="YksPood/:index" element={ <YksikPood /> }></Route>
         <Route path="tooted" element={ <Tooted /> }></Route>
         <Route path="halda" element={ <HaldaTooted /> }></Route>
         <Route path="muuda/:index" element={ <MuudaToode /> }></Route>

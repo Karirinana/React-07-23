@@ -1,5 +1,6 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef } from 'react';
 import poedFailist from "../data/poed.json";
+import { Link } from 'react-router-dom';
 
 function Poed() {
     const [poed, uuendaPoed] = useState(poedFailist);
@@ -106,7 +107,11 @@ function Poed() {
         <button onClick={filtreeriKellelKolmasTahtI}>Jäta alles kellel kolmas täht 'i'</button>
         {poed.map((yksPood, index) => (
         <div>
-            {yksPood.nimi} <button onClick={() => kustuta(index)}>x</button>
+            <Link to={"/YksPood/" + index}>
+                <span>
+                    {yksPood.nimi} <button onClick={() => kustuta(index)}>x</button>
+                </span>
+            </Link>
         </div>))}
      {/*<div>Ülemiste</div>
         <div>Viimsi</div>
