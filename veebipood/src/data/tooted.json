@@ -1,6 +1,9 @@
 [
-{"nimi" : "BMW", "hind" : 25000, "pilt": "https://www.bmwgroup.com/content/dam/grpw/websites/bmwgroup_com/brands/bmw_i/2023/230201_BMW_Group_BMW_i4eDrive40.png", "aktiivne": true}, 
-{"nimi" : "Nobe", "hind" : 55000, "pilt": "https://estonia.ee/wp-content/uploads/nobe_netist_4.jpg", "aktiivne": true}, 
-{"nimi" : "Tesla", "hind" : 85000, "pilt": "https://images.prismic.io/carwow/c340a77d-af56-4562-abfb-bd5518ccb292_2023+Tesla+Model+X+front+quarter+moving.jpg", "aktiivne": true}, 
-{"nimi" : "Opel", "hind" : 15000, "pilt": "https://www.media.stellantis.com/cache/d/e/0/e/4/de0e4b9a951ad388bcce0daae14785bc0a398ec4.jpeg", "aktiivne": true}
+    {"nimi" : "BMW", "hind" : 25000, "pilt": "https://www.bmwgroup.com/content/dam/grpw/websites/bmwgroup_com/brands/bmw_i/2023/230201_BMW_Group_BMW_i4eDrive40.png", "aktiivne": true}, 
+    {"nimi" : "Nobe", "hind" : 55000, "pilt": "https://estonia.ee/wp-content/uploads/nobe_netist_4.jpg", "aktiivne": false}, 
+    {"nimi" : "Tesla", "hind" : 85000, "pilt": "https://images.prismic.io/carwow/c340a77d-af56-4562-abfb-bd5518ccb292_2023+Tesla+Model+X+front+quarter+moving.jpg", "aktiivne": true}, 
+    {"nimi" : "Opel", "hind" : 15000, "pilt": "https://www.media.stellantis.com/cache/d/e/0/e/4/de0e4b9a951ad388bcce0daae14785bc0a398ec4.jpeg", "aktiivne": true},
+    {"nimi": "Audi", "hind": 200000,"pilt": "https://img12.img-bcg.eu/auto24/photo_series/770/992/76466992.jpg", "aktiivne": true },
+    {"nimi": "Pagani", "hind": 5000000,"pilt": "https://images.squarespace-cdn.com/content/5f7ca9b4bb17060b028086bb/1655849145441-NIB16PAJRVI4JQSCQFHD/TED74486.jpg?format=1500w&content-type=image%2Fjpeg", "aktiivne": true },
+    {"nimi": "Lamborghini", "hind": 500000,"pilt": "https://www.topgear.com/sites/default/files/2022/04/1-Lamborghini-Aventador-Ultimae.jpg", "aktiivne": true}
 ]

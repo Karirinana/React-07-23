@@ -19,11 +19,18 @@ function Ostukorv() {
     ostukorv.splice(0);
     uuendaOstukorv(ostukorv.slice());
   };
+
+   const arvutaOstukorviKogusumma = () => {
+    let summa = 0;
+    ostukorv.forEach(toode => summa = summa + toode.hind);
+    return summa;
+   }
   return (
     <div>
-      <button onClick={tyhjenda}>Tühjenda</button>
-      {ostukorv.map((toode, jrknr) => (
-        <div>
+      { ostukorv.length > 0 && <button onClick={tyhjenda}>Tühjenda</button>}
+      { ostukorv.length > 0 && <div>Ostukorvis on {ostukorv.length} toodet</div>}
+      { ostukorv.map((toode, jrknr) => (
+        <div key={jrknr}>
           {jrknr} 
           <div>{toode.nimi}{" "}</div>
           <div>{toode.hind}{" "}</div>
@@ -36,6 +43,7 @@ function Ostukorv() {
         <div>Ostukorv on tühi</div>
         <Link to="/lisa-toode">Tooteid lisama</Link>
       </>}
+      {ostukorv.length > 0 && <div>Kogusumma: {arvutaOstukorviKogusumma()} $</div>}
     </div>
   );
 }
