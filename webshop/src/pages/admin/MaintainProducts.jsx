@@ -7,9 +7,14 @@ import { Link } from 'react-router-dom';
 function MaintainProducts() {
   const [products, setProducts] = useState(productsFromFile);
 
+  const removeProduct = (index) => {
+    productsFromFile.splice(index, 1);
+    setProducts(productsFromFile.slice());
+  }
+
   return (
     <div>
-      <div>{products.map((product) => (
+      <div>{products.map((product, index) => (
         <div key={product.id}>
           <img src={product.image} alt="" />
           <div>{product.id}</div>
@@ -17,7 +22,7 @@ function MaintainProducts() {
           <div>{product.price}</div>
           <div>{product.category}</div>
           <div>{product.description}</div>
-          <button>delete</button>
+          <button onClick={() => removeProduct(index)}>delete</button>
           <Button as={Link} to={"/admin/edit-product/" + product.id}>edit</Button>
         </div>
       ))}</div>

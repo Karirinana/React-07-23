@@ -38,7 +38,7 @@ function App() {
     <div className="App">
       <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
         <Container>
-          <Navbar.Brand as={Link} to="/">Karina's webshop</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/">Hobby Lobby<img className= "logo" src="/magic-trick.png" alt="Logo"/></Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
