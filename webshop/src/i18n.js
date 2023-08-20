@@ -22,7 +22,7 @@ const resources = {
     translation: {
         "admin": "Admin vaatesse",
         "contact": "Kontakteeru meiega",
-        "shops": "Maie poed",
+        "shops": "Meie poed",
         "cart": "Ostukorv",
         "login": "Logi sisse",
         "maintain-categories": "Halda kategooriaid",
