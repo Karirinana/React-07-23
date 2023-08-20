@@ -3,7 +3,8 @@ import { useState } from "react";
 import { Link } from 'react-router-dom';
 
 import productsFromFile from "../../data/products.json";
-
+import cartFile from "../../data/cart.json";
+import { ToastContainer, toast } from 'react-toastify';
 
 function HomePage() {
   const [products, setProducts] = useState(productsFromFile);
@@ -52,6 +53,11 @@ function HomePage() {
     setProducts(compare);
   }
 
+  const addToCart = (choosenProduct) => {
+    cartFile.push(choosenProduct);
+    toast("Item was added to the cart")
+  };
+
   return (
     <div>
       <div>Total products: {products.length} pcs</div>
@@ -75,9 +81,14 @@ function HomePage() {
           <Link to={"/product/" + product.name}>
             <button>More info</button>
           </Link>
-          <button>add-to-cart</button>
+          <button onClick={() => addToCart(product)}>add-to-cart</button>
         </div>
       ))}
+      <ToastContainer 
+      position="bottom-right"
+      autoClose={5000}
+      theme="colored"
+      />
     </div>
   );
 }

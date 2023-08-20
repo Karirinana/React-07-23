@@ -1,6 +1,7 @@
-import React from 'react'
-import { useParams, Link } from 'react-router-dom'
-import productsFromFile from "../../data/products.json"
+import React from 'react';
+import { useParams, Link } from 'react-router-dom';
+import productsFromFile from "../../data/products.json";
+
 
 function SingleProduct() {
   const {name} = useParams();
@@ -10,6 +11,7 @@ function SingleProduct() {
   if (found === undefined) {
     return <div>Product not found!</div>
   }
+
 
   return (
     <div>
