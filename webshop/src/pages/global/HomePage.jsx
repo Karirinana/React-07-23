@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 
 import productsFromFile from "../../data/products.json";
 
@@ -71,6 +72,9 @@ function HomePage() {
           <img src={product.image} alt="" />
           <div>{product.name}</div>
           <div>{product.price} $</div>
+          <Link to={"/product/" + product.name}>
+            <button>More info</button>
+          </Link>
           <button>add-to-cart</button>
         </div>
       ))}
