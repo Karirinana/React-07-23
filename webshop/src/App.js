@@ -47,8 +47,10 @@ function App() {
               <Nav.Link as={Link} to="/shops">{t("shops")}</Nav.Link>
             </Nav>
             <Nav>
-              <button onClick={changeLanguageEN}>Eng</button>
-              <button onClick={changeLanguageEE}>Est</button>
+              <Nav.Link>
+                <img className="language" onClick={changeLanguageEN} src="/english.png" alt="" />
+                <img className="language" onClick={changeLanguageEE} src="/estonian.png" alt="" />
+              </Nav.Link>
               <Nav.Link as={Link} to="/cart">{t("cart")}</Nav.Link>
               <Nav.Link as={Link} to="/login">{t("login")}</Nav.Link>
             </Nav>
