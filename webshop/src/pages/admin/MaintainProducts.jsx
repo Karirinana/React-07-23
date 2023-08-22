@@ -3,8 +3,10 @@ import { useState } from "react";
 import productsFromFile from "../../data/products.json";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 function MaintainProducts() {
+  const [t] = useTranslation();
   const [products, setProducts] = useState(productsFromFile);
   const searchedRef = useRef();
 
@@ -33,9 +35,9 @@ function MaintainProducts() {
             <div>{product.price}</div>
             <div>{product.category}</div>
             <div>{product.description}</div>
-            <button onClick={() => removeProduct(index)}>delete</button>
+            <button onClick={() => removeProduct(index)}>{t("remove-item")}</button>
             <Button as={Link} to={"/admin/edit-product/" + product.id}>
-              edit
+              {t("edit")}
             </Button>
           </div>
         ))}

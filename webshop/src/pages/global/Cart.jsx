@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import cartFile from "../../data/cart.json";
 import { ToastContainer, toast } from "react-toastify";
+import { useTranslation } from 'react-i18next';
 
 function Cart() {
+  const {t} = useTranslation();
+
   const [cart, updateCart] = useState(cartFile);
 
 /*   const addItem = (choosenItem) => {
@@ -19,7 +22,7 @@ function Cart() {
   const removeAll = () => {
     cart.splice(0);
     updateCart(cart.slice());
-    toast("Your cart was emptied successfully!");
+    toast(t("Your cart was emptied successfully!"));
   };
 
   const summedPrice = () => {
@@ -31,16 +34,16 @@ function Cart() {
   return (
     <div>
       {cart.length > 0 && (
-        <button onClick={() => removeAll()}>Remove all</button>
+        <button onClick={() => removeAll()}>{t("reset")}</button>
       )}
-      {cart.length > 0 && <div>Added products: {cart.length}</div>}
+      {cart.length > 0 && <div>{t("added-products")}: {cart.length}</div>}
       {cart.map((product, index) => (
         <div key={index}>
           <div>{product.name}</div>
           <div>{product.price}</div>
           <img src={product.image} alt="" /> <br />
           {/* <button onClick={() => addItem(product)}>Add more</button> */}
-          <button onClick={() => removeItem(index)}>Remove item</button>
+          <button onClick={() => removeItem(index)}>{t("remove-item")}</button>
         </div>
       ))}
       <ToastContainer
@@ -48,8 +51,8 @@ function Cart() {
         autoClose={5000}
         theme="colored"
       />
-      {cart.length === 0 && <div>Cart is empty</div>}
-      {cart.length > 0 && <div>Summary: {summedPrice()} $</div>}
+      {cart.length === 0 && <div>{t("cart-is-empty")}</div>}
+      {cart.length > 0 && <div>{t("summary")}: {summedPrice()} $</div>}
     </div>
   );
 }

@@ -33,6 +33,21 @@ function App() {
     i18n.changeLanguage("ee");
     localStorage.setItem("language", "ee");
   }
+  
+  const changeLanguageFR = () => {
+    i18n.changeLanguage("fr");
+    localStorage.setItem("language", "fr");
+  }
+
+  const changeLanguageES = () => {
+    i18n.changeLanguage("es");
+    localStorage.setItem("language", "es");
+  }
+
+  const changeLanguageRU = () => {
+    i18n.changeLanguage("ru");
+    localStorage.setItem("language", "ru");
+  }
 
   return (
     <div className="App">
@@ -50,6 +65,9 @@ function App() {
               <Nav.Link>
                 <img className="language" onClick={changeLanguageEN} src="/english.png" alt="" />
                 <img className="language" onClick={changeLanguageEE} src="/estonian.png" alt="" />
+                <img className="language" onClick={changeLanguageFR} src="/french.png" alt="" />
+                <img className="language" onClick={changeLanguageES} src="/spanish.png" alt="" />
+                <img className="language" onClick={changeLanguageRU} src="/russian.png" alt="" />
               </Nav.Link>
               <Nav.Link as={Link} to="/cart">{t("cart")}</Nav.Link>
               <Nav.Link as={Link} to="/login">{t("login")}</Nav.Link>

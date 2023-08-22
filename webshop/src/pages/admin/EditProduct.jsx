@@ -1,9 +1,11 @@
 import React, { useRef, useState } from 'react';
 import productsFromFile from "../../data/products.json";
 import { useNavigate, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function EditProduct() {
-  const [message, newMessage] = useState("Edit product!");
+  const [t] = useTranslation();
+  const [message, newMessage] = useState(t("edit-product") + "!");
   const { productId } = useParams();
   const found = productsFromFile.find(product => product.id === Number(productId));
 
@@ -18,19 +20,19 @@ function EditProduct() {
 
   const edit = () => {
     if (idRef.current.value === "") {
-      newMessage("You can not add product with empty id!");
+      newMessage(t("you-can-not-edit-product-with-empty-id") + "!");
       return;
     } 
     if (nameRef.current.value === "") {
-      newMessage("You can not add product with empty name!");
+      newMessage(t("you-can-not-edit-product-with-empty-name") + "!");
       return;
     } 
     if (nameRef.current.value[0].toUpperCase() !== nameRef.current.value[0]) {
-      newMessage("You can not add product with a name, that starts with a lower case letter!");
+      newMessage(t("you-can-not-edit-product-with-a-name, that-starts-with-a-lower-case-letter") + "!");
       return;
     } 
-    if (pictureRef.current.value.includes(" ")) {
-      newMessage("You can not add picture with empty name!");
+    if (pictureRef.current.value.includes(" ")){
+      newMessage(t("you-can-not-edit-picture-with-empty-name") + "!");
       return;
     } 
     const index = productsFromFile.findIndex(product => product.id === Number(productId));
@@ -58,28 +60,28 @@ function EditProduct() {
   }  
 
   if (found === undefined) {
-    return <div>Product not found</div>
+    return <div>{t("product-not-found")}</div>
   }
 
   return (
     <div>
-      {idUnique === false && <div>Id is not unique</div>} <br />
+      {idUnique === false && <div>{t("id-is-not-unique")}</div>} <br />
       <div>{message}</div> <br />
       <label>ID</label><br />
       <input className={idUnique === false ? "error" : undefined} ref={idRef} onChange={checkIdUniqueness} defaultValue={found.id} type="number" /> <br />
-      <label>Name</label><br />
+      <label>{t("name")}</label><br />
       <input ref={nameRef} defaultValue={found.name} type="text" /> <br />
-      <label>Price</label><br />
+      <label>{t("price")}</label><br />
       <input ref={priceRef} defaultValue={found.price} type="number" /> <br />
-      <label>Image</label><br />
+      <label>{t("image")}</label><br />
       <input ref={pictureRef} defaultValue={found.image} type="text" /> <br />
-      <label>Category</label><br />
+      <label>{t("category")}</label><br />
       <input ref={categoryRef} defaultValue={found.category} type="text" /> <br />
-      <label>Description</label><br />
+      <label>{t("description")}</label><br />
       <input ref={descriptionRef} defaultValue={found.description} type="text" /> <br />
-      <label>Active</label><br />
+      <label>{t("active")}</label><br />
       <input ref={activeRef} defaultChecked={found.active} type="checkbox" /> <br /> <br />
-      <button disabled={idUnique === false} onClick={edit}>edit</button>
+      <button disabled={idUnique === false} onClick={edit}>{t("edit")}</button>
     </div>
   )
 }

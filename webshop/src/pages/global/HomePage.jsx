@@ -5,8 +5,11 @@ import { Link } from 'react-router-dom';
 import productsFromFile from "../../data/products.json";
 import cartFile from "../../data/cart.json";
 import { ToastContainer, toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 function HomePage() {
+  const [t] = useTranslation();
+
   const [products, setProducts] = useState(productsFromFile);
 
   const reset= () => {
@@ -55,23 +58,23 @@ function HomePage() {
 
   const addToCart = (choosenProduct) => {
     cartFile.push(choosenProduct);
-    toast("Item was added to the cart")
+    toast(t("Item was added to the cart"))
   };
 
   return (
     <div>
-      <div>Total products: {products.length} pcs</div>
-      <button onClick={reset}>Reset</button>
+      <div>{t("total-products")}: {products.length}</div>
+      <button onClick={reset}>{t("reset")}</button>
       <br /><br />
-      <button onClick={sortAZ}>Sorteeri A-Z</button>
-      <button onClick={sortZA}>Sorteeri Z-A</button>
-      <button onClick={sortPriceAsc}>Sort price asc</button>
-      <button onClick={sortPriceDesc}>Sort price desc</button>
+      <button onClick={sortAZ}>{t("SortA-Z")}</button>
+      <button onClick={sortZA}>{t("SortZ-A")}</button>
+      <button onClick={sortPriceAsc}>{t("Sort price asc")}</button>
+      <button onClick={sortPriceDesc}>{t("Sort price desc")}</button>
       <br />
-      <button onClick={filterCamping}>camping</button>
-      <button onClick={filterTent}>tent</button>
-      <button onClick={filterFigure}>figure</button>
-      <button onClick={filterLego}>lego</button>
+      <button onClick={filterCamping}>{t("camping")}</button>
+      <button onClick={filterTent}>{t("tent")}</button>
+      <button onClick={filterFigure}>{t("figure")}</button>
+      <button onClick={filterLego}>{t("lego")}</button>
 
       {products.map((product) => (
         <div key={product.id}>
@@ -79,9 +82,9 @@ function HomePage() {
           <div>{product.name}</div>
           <div>{product.price} $</div>
           <Link to={"/product/" + product.name}>
-            <button>More info</button>
+            <button>{t("more-info")}</button>
           </Link>
-          <button onClick={() => addToCart(product)}>add-to-cart</button>
+          <button onClick={() => addToCart(product)}>{t("add-to-cart")}</button>
         </div>
       ))}
       <ToastContainer 

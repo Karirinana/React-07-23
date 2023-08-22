@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useRef } from "react";
+import { useTranslation } from 'react-i18next';
 
 import productsFromfile from "../../data/products.json";
 
 function AddProduct() {
-  const [message, newMessage] = useState("Add product!");
+  const {t} = useTranslation();
+
+  const [message, newMessage] = useState(t("add-new-product"));
 
   const nameRef = useRef();
   const idRef = useRef();
@@ -16,23 +19,23 @@ function AddProduct() {
 
   const addNewProduct = () => {
     if (idRef.current.value === "") {
-      newMessage("You can not add product with empty id!");
+      newMessage(t("you-can-not-add-product-with-empty-id"));
       return;
     } 
     if (nameRef.current.value === "") {
-      newMessage("You can not add product with empty name!");
+      newMessage("noNameInserted");
       return;
     } 
     if (nameRef.current.value[0].toUpperCase() !== nameRef.current.value[0]) {
-      newMessage("You can not add product with a name, that starts with a lower case letter!");
+      newMessage(t("lowerCaseLetterNameError"));
       return;
     } 
     if (pictureRef.current.value.includes(" ")) {
-      newMessage("You can not add picture with empty name!");
+      newMessage("pictureWithEmptyNameError");
       return;
     } 
       newMessage(
-        "New product " + nameRef.current.value + " was added successfully!"
+        t("newProduct") + " " + nameRef.current.value + " " + t("NewProductAddedSuccessfully")
       );
       productsFromfile.push({
         name: nameRef.current.value,
@@ -48,28 +51,28 @@ function AddProduct() {
   return (
     <div>
       <div>{message}</div> <br />
-      <label>Product name</label> <br />
+      <label>{t("product-name")}</label> <br />
       <input ref={nameRef} type="text" />
       <br />
-      <label>Product id</label> <br />
+      <label>{t("product-id")}</label> <br />
       <input ref={idRef} type="number" />
       <br />
-      <label>Product price</label> <br />
+      <label>{t("product-price")}</label> <br />
       <input ref={priceRef} type="number" />
       <br />
-      <label>Product picture</label> <br />
+      <label>{t("product-image")}</label> <br />
       <input ref={pictureRef} type="text" />
       <br />
-      <label>Product category</label> <br />
+      <label>{t("product-category")}</label> <br />
       <input ref={categoryRef} type="text" />
       <br />
-      <label>Product description</label> <br />
+      <label>{t("product-description")}</label> <br />
       <input ref={descriptionRef} type="text" />
       <br />
-      <label>Product active</label> <br />
+      <label>{t("product-active")}</label> <br />
       <input ref={activeRef} type="checkbox" />
       <br />
-      <button onClick={addNewProduct}>Add</button>
+      <button onClick={addNewProduct}>{t("add")}</button>
     </div>
   );
 }

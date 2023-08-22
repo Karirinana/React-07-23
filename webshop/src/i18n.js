@@ -2,6 +2,9 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import english from "./i18n/english.json";
 import estonian from "./i18n/estonian.json";
+import french from "./i18n/french.json";
+import spanish from "./i18n/spanish.json";
+import russian from "./i18n/russian.json";
 
 // the translations
 // (tip move them in a JSON file and import them,
@@ -12,6 +15,15 @@ const resources = {
   },
   ee: {
     translation: estonian
+  },
+  fr: {
+    translation: french
+  },
+  es: {
+    translation: spanish
+  },
+  ru: {
+    translation: russian
   }
 };
 
