@@ -52,6 +52,8 @@ function AddProduct() {
   const [idUnique, setIdUnique] = useState(true);
 
   const checkIdUniqueness = () => {
+
+
    const index = productsFromFile.findIndex(product => product.id === Number(idRef.current.value))
 
    if (index === -1) {
@@ -86,7 +88,7 @@ function AddProduct() {
       <label>{t("product-active")}</label> <br />
       <input ref={activeRef} type="checkbox" />
       <br />
-      <button onClick={addNewProduct}>{t("add")}</button>
+      <button disabled={idUnique === false} onClick={addNewProduct}>{t("add")}</button>
       <ToastContainer 
       position="bottom-right"
       autoClose={5000}

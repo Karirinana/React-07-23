@@ -29,3 +29,19 @@ box-shadow: 0 0 20PX #719ECE;
   outline: none !important;
   border: 2px solid red;
 }
+
+.map {
+  height: 300px;
+  margin: 5%;
+  border-radius: 3px;
+}
+
+.active {
+  border: 1px solid green;
+  background-color: rgb(235, 240, 235);
+}
+
+.inactive {
+  border: 1px solid red;
+  background-color: rgb(247, 240, 240);
+}

@@ -57,6 +57,10 @@ function HomePage() {
   }
 
   const addToCart = (choosenProduct) => {
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    cart.push(choosenProduct);
+    localStorage.setItem("cart", JSON.stringify(cart));
+
     cartFile.push(choosenProduct);
     toast(t("Item was added to the cart"))
   };

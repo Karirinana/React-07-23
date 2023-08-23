@@ -50,6 +50,10 @@ function EditProduct() {
   const [idUnique, setIdUnique] = useState(true);
 
   const checkIdUniqueness = () => {
+    if (idRef.current.value === productId) {
+    setIdUnique(true);
+    return;
+    }
    const index = productsFromFile.findIndex(product => product.id === Number(idRef.current.value))
 
    if (index === -1) {
