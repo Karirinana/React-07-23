@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Manrope&family=Roboto+Mono&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +12,18 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+* {
+  font-family: 'Manrope', sans-serif;
+}
+
+.logo {
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+}
+
+.logo:hover {
+  opacity: 0.8;
 }

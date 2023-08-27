@@ -14,7 +14,7 @@ import MaintainProducts from "./pages/admin/MaintainProducts";
 import MaintainShops from "./pages/admin/MaintainShops";
 import HomePage from "./pages/global/HomePage";
 import Cart from "./pages/global/Cart";
-import ContactUs from "./pages/global/ContactUs";
+import { ContactUs } from "./pages/global/ContactUs";
 import Shops from "./pages/global/Shops";
 import SingleProduct from "./pages/global/SingleProduct";
 import Login from "./pages/auth/Login";
@@ -33,12 +33,27 @@ function App() {
     i18n.changeLanguage("ee");
     localStorage.setItem("language", "ee");
   }
+  
+  const changeLanguageFR = () => {
+    i18n.changeLanguage("fr");
+    localStorage.setItem("language", "fr");
+  }
+
+  const changeLanguageES = () => {
+    i18n.changeLanguage("es");
+    localStorage.setItem("language", "es");
+  }
+
+  const changeLanguageRU = () => {
+    i18n.changeLanguage("ru");
+    localStorage.setItem("language", "ru");
+  }
 
   return (
     <div className="App">
       <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
         <Container>
-          <Navbar.Brand as={Link} to="/">Karina's webshop</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/">Hobby Lobby <img className= "logo" src="/magic-trick.png" alt="Logo"/></Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
@@ -47,8 +62,13 @@ function App() {
               <Nav.Link as={Link} to="/shops">{t("shops")}</Nav.Link>
             </Nav>
             <Nav>
-              <button onClick={changeLanguageEN}>Eng</button>
-              <button onClick={changeLanguageEE}>Est</button>
+              <Nav.Link>
+                <img className="language" onClick={changeLanguageEN} src="/english.png" alt="" />
+                <img className="language" onClick={changeLanguageEE} src="/estonian.png" alt="" />
+                <img className="language" onClick={changeLanguageFR} src="/french.png" alt="" />
+                <img className="language" onClick={changeLanguageES} src="/spanish.png" alt="" />
+                <img className="language" onClick={changeLanguageRU} src="/russian.png" alt="" />
+              </Nav.Link>
               <Nav.Link as={Link} to="/cart">{t("cart")}</Nav.Link>
               <Nav.Link as={Link} to="/login">{t("login")}</Nav.Link>
             </Nav>
@@ -60,7 +80,7 @@ function App() {
         <Route path="cart" element={<Cart />}></Route>
         <Route path="contact" element={<ContactUs />}></Route>
         <Route path="shops" element={<Shops />}></Route>
-        <Route path="product" element={<SingleProduct />}></Route>
+        <Route path="product/:name" element={<SingleProduct />}></Route>
         <Route path="admin" element={<AdminHome />}></Route>
         <Route path="admin/add-product" element={<AddProduct />}></Route>
         <Route path="admin/edit-product/:productId" element={<EditProduct />}></Route>
