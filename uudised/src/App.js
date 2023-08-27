@@ -6,6 +6,8 @@ import Kontakt from './pages/Kontakt';
 import Meist from './pages/Meist';
 import LisaUudis from './pages/LisaUudis';
 import HaldaUudised from './pages/HaldaUudised';
+import YksUudis from './pages/YksUudis';
+import MuudaUudis from './pages/MuudaUudis';
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
         <Route path='meist' element= { <Meist />} />
         <Route path='lisa-uudis' element= { <LisaUudis />} />
         <Route path='halda' element= { <HaldaUudised />} />
+        <Route path='uudis/:index' element= { <YksUudis />} />
+        <Route path='muuda/:index' element= { <MuudaUudis />} />
       </Routes>
     </div>
   );
