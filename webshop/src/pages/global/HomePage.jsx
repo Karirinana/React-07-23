@@ -3,9 +3,9 @@ import { useState } from "react";
 import { Link } from 'react-router-dom';
 
 import productsFromFile from "../../data/products.json";
-import cartFile from "../../data/cart.json";
 import { ToastContainer, toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import Button from 'react-bootstrap/Button';
 
 function HomePage() {
   const [t] = useTranslation();
@@ -58,27 +58,33 @@ function HomePage() {
 
   const addToCart = (choosenProduct) => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    cart.push(choosenProduct);
+    const index = cart.findIndex(cartProduct => cartProduct.product.id === choosenProduct.id)
+    if (index >= 0) {
+      cart[index].quantity = cart[index].quantity + 1 ;
+      
+    } else {
+      cart.push({"quantity" : 1, "product": choosenProduct});
+    }  
+    
+    
     localStorage.setItem("cart", JSON.stringify(cart));
-
-    cartFile.push(choosenProduct);
     toast(t("Item was added to the cart"))
   };
 
   return (
     <div>
       <div>{t("total-products")}: {products.length}</div>
-      <button onClick={reset}>{t("reset")}</button>
+      <Button variant="outline-dark" onClick={reset}>{t("reset")}</Button>
       <br /><br />
-      <button onClick={sortAZ}>{t("SortA-Z")}</button>
-      <button onClick={sortZA}>{t("SortZ-A")}</button>
-      <button onClick={sortPriceAsc}>{t("Sort price asc")}</button>
-      <button onClick={sortPriceDesc}>{t("Sort price desc")}</button>
+      <Button variant="outline-dark" onClick={sortAZ}>{t("SortA-Z")}</Button>
+      <Button variant="outline-dark" onClick={sortZA}>{t("SortZ-A")}</Button>
+      <Button variant="outline-dark" onClick={sortPriceAsc}>{t("Sort price asc")}</Button>
+      <Button variant="outline-dark" onClick={sortPriceDesc}>{t("Sort price desc")}</Button>
       <br />
-      <button onClick={filterCamping}>{t("camping")}</button>
-      <button onClick={filterTent}>{t("tent")}</button>
-      <button onClick={filterFigure}>{t("figure")}</button>
-      <button onClick={filterLego}>{t("lego")}</button>
+      <Button variant="outline-dark" onClick={filterCamping}>{t("camping")}</Button>
+      <Button variant="outline-dark" onClick={filterTent}>{t("tent")}</Button>
+      <Button variant="outline-dark" onClick={filterFigure}>{t("figure")}</Button>
+      <Button variant="outline-dark" onClick={filterLego}>{t("lego")}</Button>
 
       {products.map((product) => (
         <div key={product.id}>
@@ -86,9 +92,9 @@ function HomePage() {
           <div>{product.name}</div>
           <div>{product.price} $</div>
           <Link to={"/product/" + product.name}>
-            <button>{t("more-info")}</button>
+            <Button variant="outline-dark">{t("more-info")}</Button>
           </Link>
-          <button onClick={() => addToCart(product)}>{t("add-to-cart")}</button>
+          <Button variant="outline-dark" onClick={() => addToCart(product)}>{t("add-to-cart")}</Button>
         </div>
       ))}
       <ToastContainer 

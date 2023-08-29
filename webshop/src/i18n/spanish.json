@@ -1,13 +1,19 @@
 {
-    "admin": "Página de administración",
-    "contact": "Contactos",
-    "shops": "Tiendas",
-    "cart": "Carrito",
-    "login": "Iniciar sesión",
-    "maintain-categories": "Administrar categorías",
-    "maintain-shops": "Administrar tiendas",
-    "add-product": "Agregar producto",
-    "maintain-products": "Administrar productos",
+    "nav": {
+        "admin": "Página de administración",
+        "contact": "Contactos",
+        "shops": "Tiendas",
+        "cart": "Carrito",
+        "login": "Iniciar sesión"
+    },
+
+    "admin": {
+        "maintain-categories": "Administrar categorías",
+        "maintain-shops": "Administrar tiendas",
+        "add-product": "Agregar producto",
+        "maintain-products": "Administrar productos"
+    },
+
     "reset": "Restablecer",
     "SortA-Z": "Ordenar de A a Z",
     "SortZ-A": "Ordenar de Z a A",

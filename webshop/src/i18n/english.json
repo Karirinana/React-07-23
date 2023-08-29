@@ -1,13 +1,19 @@
 {
-    "admin": "Admin page",
-    "contact": "Contacts",
-    "shops": "Shops",
-    "cart": "Cart",
-    "login": "Log in",
-    "maintain-categories": "Maintain categories",
-    "maintain-shops": "Maintain shops",
-    "add-product": "Add product",
-    "maintain-products": "Maintain products",
+   "nav": { 
+        "admin": "Admin page",
+        "contact": "Contacts",
+        "shops": "Shops",
+        "cart": "Cart",
+        "login": "Log in"
+    },
+
+   "admin" : { 
+        "maintain-categories": "Maintain categories",
+        "maintain-shops": "Maintain shops",
+        "add-product": "Add product",
+        "maintain-products": "Maintain products"
+    },
+
     "reset": "Reset",
     "SortA-Z": "Sort A-Z",
     "SortZ-A": "Sort Z-A",

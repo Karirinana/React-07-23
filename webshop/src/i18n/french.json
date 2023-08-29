@@ -1,13 +1,19 @@
 {
-    "admin": "Page d'administration",
-    "contact": "Contacts",
-    "shops": "Boutiques",
-    "cart": "Panier",
-    "login": "Se connecter",
-    "maintain-categories": "Gérer les catégories",
-    "maintain-shops": "Gérer les boutiques",
-    "add-product": "Ajouter un produit",
-    "maintain-products": "Gérer les produits",
+    "nav": {
+        "admin": "Page d'administration",
+        "contact": "Contacts",
+        "shops": "Boutiques",
+        "cart": "Panier",
+        "login": "Se connecter"
+    },
+
+    "admin": {
+        "maintain-categories": "Gérer les catégories",
+        "maintain-shops": "Gérer les boutiques",
+        "add-product": "Ajouter un produit",
+        "maintain-products": "Gérer les produits"
+    },
+
     "reset": "Réinitialiser",
     "SortA-Z": "Trier de A à Z",
     "SortZ-A": "Trier de Z à A",
