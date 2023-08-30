@@ -8,6 +8,8 @@ import LisaUudis from './pages/LisaUudis';
 import HaldaUudised from './pages/HaldaUudised';
 import YksUudis from './pages/YksUudis';
 import MuudaUudis from './pages/MuudaUudis';
+import KasutajaPostitused from './pages/KasutajaPostitused';
+import YksPostitus from './pages/YksPostitus';
 
 function App() {
   return (
@@ -39,6 +41,8 @@ function App() {
         <Route path='halda' element= { <HaldaUudised />} />
         <Route path='uudis/:index' element= { <YksUudis />} />
         <Route path='muuda/:index' element= { <MuudaUudis />} />
+        <Route path='kasutaja-postitus/:kasutajaId' element= { <KasutajaPostitused />} />
+        <Route path='vaata-postitus/:postituseId' element= { <YksPostitus />} />
       </Routes>
     </div>
   );
