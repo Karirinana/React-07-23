@@ -1,13 +1,26 @@
-import React, { useRef, useState } from 'react';
-import productsFromFile from "../../data/products.json";
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import config from "../../data/config.json";
 
 function EditProduct() {
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch(config.products)
+    .then(res => res.json())
+    .then(json => setProducts(json || []))
+
+    fetch(config.categories)
+    .then(res => res.json())
+    .then(json => setCategories(json || []))
+  }, []);
+
   const [t] = useTranslation();
   const [message, newMessage] = useState(t("edit-product") + "!");
   const { productId } = useParams();
-  const found = productsFromFile.find(product => product.id === Number(productId));
+  const found = products.find(product => product.id === Number(productId));
 
   const idRef = useRef();
   const nameRef = useRef();
@@ -35,8 +48,8 @@ function EditProduct() {
       newMessage(t("you-can-not-edit-picture-with-empty-name") + "!");
       return;
     } 
-    const index = productsFromFile.findIndex(product => product.id === Number(productId));
-    productsFromFile[index] = {
+    const index = products.findIndex(product => product.id === Number(productId));
+    products[index] = {
     "id": Number(idRef.current.value),
     "image": pictureRef.current.value,
     "name": nameRef.current.value,
@@ -46,6 +59,7 @@ function EditProduct() {
     "active": activeRef.current.checked
     };
     navigate("/admin/maintain-products");
+    fetch(config.products, {method: "PUT", body: JSON.stringify(products)})
   }
   const [idUnique, setIdUnique] = useState(true);
 
@@ -54,7 +68,7 @@ function EditProduct() {
     setIdUnique(true);
     return;
     }
-   const index = productsFromFile.findIndex(product => product.id === Number(idRef.current.value))
+   const index = products.findIndex(product => product.id === Number(idRef.current.value))
 
    if (index === -1) {
     setIdUnique(true);
@@ -80,7 +94,10 @@ function EditProduct() {
       <label>{t("image")}</label><br />
       <input ref={pictureRef} defaultValue={found.image} type="text" /> <br />
       <label>{t("category")}</label><br />
-      <input ref={categoryRef} defaultValue={found.category} type="text" /> <br />
+      <select ref={categoryRef}>
+        {categories.map(category => <option key={category.name} selected={category.name === found.category}>{category.name}</option>)}
+      </select>
+      <br />
       <label>{t("description")}</label><br />
       <input ref={descriptionRef} defaultValue={found.description} type="text" /> <br />
       <label>{t("active")}</label><br />
