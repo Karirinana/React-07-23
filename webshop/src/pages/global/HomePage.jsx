@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link } from 'react-router-dom';
 
-import productsFromFile from "../../data/products.json";
+import config from "../../data/config.json";
+
 import { ToastContainer, toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
@@ -10,10 +11,27 @@ import Button from 'react-bootstrap/Button';
 function HomePage() {
   const [t] = useTranslation();
 
-  const [products, setProducts] = useState(productsFromFile);
+  const [products, setProducts] = useState([]);
+
+  const [dbProducts, setDbProducts] = useState([]);
+
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch(config.products)
+      .then(res => res.json())
+      .then(json => {
+        setProducts(json || []);
+        setDbProducts(json || []);
+    })
+
+    fetch(config.categories)
+      .then(res => res.json())
+      .then(json => setCategories(json || []));
+    }, []);
 
   const reset= () => {
-    setProducts(productsFromFile);
+    setProducts(dbProducts);
   }
 
   const sortAZ = () => {
@@ -36,7 +54,7 @@ function HomePage() {
     setProducts(products.slice());
   }
 
-  const filterCamping = () => {
+  /* const filterCamping = () => {
     const compare = products.filter(product => product.category.match("camping"));
     setProducts(compare);
   }
@@ -54,11 +72,16 @@ function HomePage() {
   const filterLego = () => {
     const compare = products.filter(product => product.category.match("lego"));
     setProducts(compare);
+  } */
+
+  const filterByCategory = (categoryClicked) => {
+    const compare = dbProducts.filter(product => product.category === categoryClicked);
+    setProducts(compare);
   }
 
   const addToCart = (choosenProduct) => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    const index = cart.findIndex(cartProduct => cartProduct.product.id === choosenProduct.id)
+    const index = cart.findIndex(cartProduct => cartProduct.product.id === choosenProduct.id);
     if (index >= 0) {
       cart[index].quantity = cart[index].quantity + 1 ;
       
@@ -68,7 +91,7 @@ function HomePage() {
     
     
     localStorage.setItem("cart", JSON.stringify(cart));
-    toast(t("Item was added to the cart"))
+    toast(t("Item was added to the cart"));
   };
 
   return (
@@ -81,10 +104,16 @@ function HomePage() {
       <Button variant="outline-dark" onClick={sortPriceAsc}>{t("Sort price asc")}</Button>
       <Button variant="outline-dark" onClick={sortPriceDesc}>{t("Sort price desc")}</Button>
       <br />
-      <Button variant="outline-dark" onClick={filterCamping}>{t("camping")}</Button>
-      <Button variant="outline-dark" onClick={filterTent}>{t("tent")}</Button>
-      <Button variant="outline-dark" onClick={filterFigure}>{t("figure")}</Button>
-      <Button variant="outline-dark" onClick={filterLego}>{t("lego")}</Button>
+{/*       <Button variant="outline-dark" onClick={() => filterByCategory("camping")}>{t("camping")}</Button>
+      <Button variant="outline-dark" onClick={() => filterByCategory("tent")}>{t("tent")}</Button>
+      <Button variant="outline-dark" onClick={() => filterByCategory("figure")}>{t("figure")}</Button>
+      <Button variant="outline-dark" onClick={() => filterByCategory("lego")}>{t("lego")}</Button> */}
+
+      <br /><br />
+
+      {categories.map(category => <Button key={category.name} variant="outline-dark" onClick={() => filterByCategory(category.name)}>{t(category.name)}</Button>)}
+
+      <br /><br />
 
       {products.map((product) => (
         <div key={product.id}>

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import productsFromFile from "../../data/products.json";
+import config from "../../data/config.json";
 import { useTranslation } from 'react-i18next';
 
 
@@ -9,7 +9,19 @@ function SingleProduct() {
 
   const {name} = useParams();
 
-  const found = productsFromFile.find(product => product.name === name);
+  const [products, setProducts] = useState([]);
+
+
+  useEffect(() => {
+    fetch(config.products)
+      .then(res => res.json())
+      .then(json => {
+        setProducts(json || []);
+    })
+    }, []);
+
+
+  const found = products.find(product => product.name === name);
 
   if (found === undefined) {
     return <div>{t("product-not-found")}</div>

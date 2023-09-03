@@ -1,22 +1,35 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useState } from "react";
-import productsFromFile from "../../data/products.json";
+import config from "../../data/config.json";
+
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
 function MaintainProducts() {
   const [t] = useTranslation();
-  const [products, setProducts] = useState(productsFromFile);
+  const [products, setProducts] = useState([]);
+
+  const [dbProducts, setDbProducts] = useState([]);
+
+  useEffect(() => {
+    fetch(config.products)
+      .then(res => res.json())
+      .then(json => {
+        setProducts(json || []);
+        setDbProducts(json || []);
+    })
+    }, []);
+
   const searchedRef = useRef();
 
   const removeProduct = (index) => {
-    productsFromFile.splice(index, 1);
-    setProducts(productsFromFile.slice());
+    dbProducts.splice(index, 1);
+    setProducts(dbProducts.slice());
   };
 
   const searchFromProducts = () => {
-    const result = productsFromFile.filter((product) =>
+    const result = dbProducts.filter((product) =>
       product.name.toLowerCase().includes(searchedRef.current.value.toLowerCase()) || 
       product.description.toLowerCase().includes(searchedRef.current.value.toLowerCase()) ||
       product.id.toString().includes(searchedRef.current.value) 
