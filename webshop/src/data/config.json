@@ -1,5 +1,5 @@
 {
     "products": "https://karina-webshop-default-rtdb.europe-west1.firebasedatabase.app/products.json",
     "categories": "https://karina-webshop-default-rtdb.europe-west1.firebasedatabase.app/categories.json",
-    "shops": ""
+    "shops": "https://karina-webshop-default-rtdb.europe-west1.firebasedatabase.app/shops.json"
 }
