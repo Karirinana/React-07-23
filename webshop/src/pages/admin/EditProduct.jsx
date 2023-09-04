@@ -2,19 +2,28 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import config from "../../data/config.json";
+import { Spinner } from "react-bootstrap";
 
 function EditProduct() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
 
+  const [isLoading, setLoading] = useState(true);
+
   useEffect(() => {
     fetch(config.products)
     .then(res => res.json())
-    .then(json => setProducts(json || []))
+    .then(json => {
+      setProducts(json || []);
+      setLoading(false)
+    })
 
     fetch(config.categories)
     .then(res => res.json())
-    .then(json => setCategories(json || []))
+    .then(json => {
+      setCategories(json || []);
+      setLoading(false)
+    })
   }, []);
 
   const [t] = useTranslation();
@@ -79,6 +88,10 @@ function EditProduct() {
 
   if (found === undefined) {
     return <div>{t("product-not-found")}</div>
+  }
+
+  if (isLoading === true) {
+    return <Spinner />
   }
 
   return (

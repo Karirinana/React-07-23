@@ -3,7 +3,7 @@ import { useState } from "react";
 import config from "../../data/config.json";
 import "../../css/MaintainProducts.css"
 
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
@@ -13,12 +13,15 @@ function MaintainProducts() {
 
   const [dbProducts, setDbProducts] = useState([]);
 
+  const [isLoading, setLoading] = useState(true);
+
   useEffect(() => {
     fetch(config.products)
       .then(res => res.json())
       .then(json => {
         setProducts(json || []);
         setDbProducts(json || []);
+        setLoading(false);
     })
     }, []);
 
@@ -37,6 +40,10 @@ function MaintainProducts() {
     );
     setProducts(result);
   };
+
+  if (isLoading === true) {
+    return <Spinner />
+  }
 
   return (
     <div>
