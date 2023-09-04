@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import config from "../../data/config.json";
 import { useTranslation } from 'react-i18next';
+import { Spinner } from 'react-bootstrap';
 
 
 function SingleProduct() {
@@ -11,15 +12,21 @@ function SingleProduct() {
 
   const [products, setProducts] = useState([]);
 
+  const [isLoading, setLoading] = useState(true);
+
 
   useEffect(() => {
     fetch(config.products)
       .then(res => res.json())
       .then(json => {
         setProducts(json || []);
+        setLoading(false);
     })
     }, []);
 
+  if (isLoading === true) {
+    return <Spinner />
+  }
 
   const found = products.find(product => product.name === name);
 

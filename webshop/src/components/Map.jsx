@@ -68,7 +68,7 @@ function Map(props) {
             <Marker position={[shop.lat, shop.lng]}>
             <Popup>
               {shop.name}<br />{shop.availability}<br />
-              <a href={shop.url}>
+              <a href={shop.url} target="_blank" rel="noreferrer">
               {shop.address}
               </a>
             </Popup>

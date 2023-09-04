@@ -3,10 +3,12 @@ import { useState } from "react";
 import { Link } from 'react-router-dom';
 
 import config from "../../data/config.json";
+import styles from "../../css/HomePage.module.css"
 
 import { ToastContainer, toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
+import { Spinner } from "react-bootstrap";
 
 function HomePage() {
   const [t] = useTranslation();
@@ -17,12 +19,15 @@ function HomePage() {
 
   const [categories, setCategories] = useState([]);
 
+  const [isLoading, setLoading] = useState(true);
+
   useEffect(() => {
     fetch(config.products)
       .then(res => res.json())
       .then(json => {
         setProducts(json || []);
         setDbProducts(json || []);
+        setLoading(false);
     })
 
     fetch(config.categories)
@@ -94,6 +99,10 @@ function HomePage() {
     toast(t("Item was added to the cart"));
   };
 
+  if (isLoading === true) {
+    return <Spinner variant="outline-dark"/>
+  }
+
   return (
     <div>
       <div>{t("total-products")}: {products.length}</div>
@@ -115,17 +124,19 @@ function HomePage() {
 
       <br /><br />
 
-      {products.map((product) => (
-        <div key={product.id}>
+      <div className={styles.products}>
+        {products.map((product) => (
+        <div key={product.id} className={styles.product}>
           <img src={product.image} alt="" />
-          <div>{product.name}</div>
+          <div className={styles.name}>{product.name}</div>
           <div>{product.price} $</div>
           <Link to={"/product/" + product.name}>
             <Button variant="outline-dark">{t("more-info")}</Button>
           </Link>
           <Button variant="outline-dark" onClick={() => addToCart(product)}>{t("add-to-cart")}</Button>
         </div>
-      ))}
+        ))}
+      </div>
       <ToastContainer 
       position="bottom-right"
       autoClose={5000}

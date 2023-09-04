@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import config from "../../data/config.json";
+import "../../css/MaintainProducts.css"
 
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -42,20 +43,37 @@ function MaintainProducts() {
       <input onChange={searchFromProducts} ref={searchedRef} type="text" />
       <div>{products.length}</div>
       <div>
-        {products.map((product, index) => (
-          <div key={product.id} className={ product.active ? "active" : "inactive"}>
-            <img src={product.image} alt="" />
-            <div>{product.id}</div>
-            <div>{product.name}</div>
-            <div>{product.price}</div>
-            <div>{product.category}</div>
-            <div>{product.description}</div>
-            <button onClick={() => removeProduct(index)}>{t("remove-item")}</button>
-            <Button as={Link} to={"/admin/edit-product/" + product.id}>
-              {t("edit")}
-            </Button>
-          </div>
-        ))}
+        <table>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((product, index) => (
+            <tr key={product.id} className={ product.active ? "active" : "inactive"}>
+              <td><img src={product.image} alt="" /></td>
+              <td>{product.id}</td>
+              <td>{product.name}</td>
+              <td>{product.price}</td>
+              <td>{product.category}</td>
+              <td>{product.description}</td>
+              <td>
+                <button onClick={() => removeProduct(index)}>{t("remove-item")}</button>
+                <Button as={Link} to={"/admin/edit-product/" + product.id}>
+                  {t("edit")}
+                </Button>
+              </td>
+            </tr>
+          ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
