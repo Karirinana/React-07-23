@@ -43,3 +43,8 @@ width: 30px;
 .button:active {
     padding: 1px;
 }
+
+.cart__bottom {
+     text-align: right;
+     margin-right: 10%;
+}

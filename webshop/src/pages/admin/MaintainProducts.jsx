@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import config from "../../data/config.json";
-import "../../css/MaintainProducts.css"
+import styles from "../../css/MaintainProducts.module.css"
 
 import { Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -27,9 +27,15 @@ function MaintainProducts() {
 
   const searchedRef = useRef();
 
-  const removeProduct = (index) => {
+  const removeProduct = (productId) => {
+    const index = dbProducts.findIndex(product => product.id === productId)
     dbProducts.splice(index, 1);
-    setProducts(dbProducts.slice());
+   /*  setProducts(dbProducts.slice()); */
+    searchFromProducts();
+    fetch(config.products, {method: "PUT", body: JSON.stringify(dbProducts)})
+    .then(() => {
+
+    })
   };
 
   const searchFromProducts = () => {
@@ -63,8 +69,8 @@ function MaintainProducts() {
             </tr>
           </thead>
           <tbody>
-            {products.map((product, index) => (
-            <tr key={product.id} className={ product.active ? "active" : "inactive"}>
+            {products.map((product) => (
+            <tr key={product.id} className={ product.active ? styles.active : styles.inactive}>
               <td><img src={product.image} alt="" /></td>
               <td>{product.id}</td>
               <td>{product.name}</td>
@@ -72,7 +78,7 @@ function MaintainProducts() {
               <td>{product.category}</td>
               <td>{product.description}</td>
               <td>
-                <button onClick={() => removeProduct(index)}>{t("remove-item")}</button>
+                <button onClick={() => removeProduct(product.id)}>{t("remove-item")}</button>
                 <Button as={Link} to={"/admin/edit-product/" + product.id}>
                   {t("edit")}
                 </Button>

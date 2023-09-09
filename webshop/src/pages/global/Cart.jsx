@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 //import cartFile from "../../data/cart.json";
 import { ToastContainer, toast } from "react-toastify";
 import { useTranslation } from 'react-i18next';
-import "../../css/Cart.css"
+import styles from "../../css/Cart.module.css";
 import Button from 'react-bootstrap/Button';
+import ParcelMachines from "../../components/cart/ParcelMachines";
+import Payment from "../../components/cart/Payment";
 
 function Cart() {
   const {t} = useTranslation();
@@ -15,14 +17,7 @@ function Cart() {
     updateCart(cart.slice());
     toast("Item was added successfully!");
   }; */
-  const [parcelMachines, setParcelMachines] = useState([]);
-
-  useEffect(() => {
-    fetch("https://www.omniva.ee/locations.json")
-    .then(responce => responce.json())
-    .then(json => setParcelMachines(json))
-  }, []);
-
+ 
   const removeItem = (index) => {
     cart.splice(index, 1);
     updateCart(cart.slice());
@@ -57,32 +52,7 @@ function Cart() {
     return sum;
   };
 
-  const pay = () => {
-    const url = "https://igw-demo.every-pay.com/api/v4/payments/oneoff";
-    const paymentBody = {
-      "api_username": "e36eb40f5ec87fa2",
-      "account_name": "EUR3D1",
-      "amount": summedPrice(),
-      "order_reference": Math.random() * 9999999,
-      "token_agreement": "unscheduled",
-      "nonce": "a9b7f7e7" + Math.random() * 9999999 + new Date(),
-      "timestamp": new Date(),
-      "customer_ip": "1.2.3.4",
-      "customer_url": "https://webshop-hobby-lobby.web.app/cart"
-    };
-    const paymentHeaders = {
-      "Authorization": "Basic ZTM2ZWI0MGY1ZWM4N2ZhMjo3YjkxYTNiOWUxYjc0NTI0YzJlOWZjMjgyZjhhYzhjZA==",
-      "Content-Type": "application/json"
-    };
-
-    fetch(url,{ method: "POST", body: JSON.stringify(paymentBody), headers: paymentHeaders})
-    .then(res => res.json())
-    .then(json => window.location.href = json.payment_link)
-  }
-
-  if (parcelMachines.length === 0) {
-    return <div>Loading...</div>
-  }
+ 
 
   return (
     <div>
@@ -91,17 +61,17 @@ function Cart() {
       )}
       {cart.length > 0 && <div>{t("added-products")}: {cart.length}</div>}
       {cart.map((cartProduct, index) => (
-        <div className="product" key={index}>
-          <img className="image" src={cartProduct.product.image} alt="" /> <br />
-          <div className="name">{cartProduct.product.name}</div>
-          <div className="price">{cartProduct.product.price}</div>
-         <div className="quantity">
-           <img src="/plus.png" alt="" className="button" onClick={() => increaseQuantity(index)}/>
+        <div className={styles.product} key={index}>
+          <img className={styles.image} src={cartProduct.product.image} alt="" /> <br />
+          <div className={styles.name}>{cartProduct.product.name}</div>
+          <div className={styles.price}>{cartProduct.product.price}</div>
+         <div className={styles.quantity}>
+           <img src="/plus.png" alt="" className={styles.button} onClick={() => increaseQuantity(index)}/>
             <div>{cartProduct.quantity} tk</div>
-            <img src="/minus.png" alt="" className="button" onClick={() => decreaseQuantity(index)}/>
+            <img src="/minus.png" alt="" className={styles.button} onClick={() => decreaseQuantity(index)}/>
          </div>
-          <div className="total">{(cartProduct.quantity * cartProduct.product.price).toFixed(2)} $</div>
-          <img src="/remove.png" alt="" className="button" onClick={() => removeItem()}/>
+          <div className={styles.total}>{(cartProduct.quantity * cartProduct.product.price).toFixed(2)} $</div>
+          <img src="/remove.png" alt="" className={styles.button} onClick={() => removeItem()}/>
         </div>
       ))}
       <ToastContainer
@@ -111,10 +81,10 @@ function Cart() {
       />
 
       {cart.length > 0 && 
-        <div>
-          <select>{parcelMachines.filter(pm => pm.A0_NAME === "EE").sort((a,b) => a - b).map(pm => <option key={pm.NAME}>{pm.NAME}</option>)}</select>
+        <div className={styles.cart__bottom}>
+          <ParcelMachines />
           <div>{t("summary")}: {summedPrice().toFixed(2)} $</div>
-          <button onClick={pay}>Pay</button>
+          <Payment sum={summedPrice()} />
         </div>}
       {cart.length === 0 && <div>{t("cart-is-empty")}</div>}
     </div>

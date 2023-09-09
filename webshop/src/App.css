@@ -36,12 +36,7 @@ input:focus {
   border-radius: 3px;
 }
 
-.active {
-  border: 1px solid green;
-  background-color: rgb(235, 240, 235);
-}
-
-.inactive {
-  border: 1px solid red;
-  background-color: rgb(247, 240, 240);
+.carousel {
+  width: 500px;
+  margin: auto;
 }

@@ -9,6 +9,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import { Spinner } from "react-bootstrap";
+import CarouselGallery from "../../components/home/CarouselGallery";
+import SortButtons from "../../components/home/SortButtons";
+import FilterButtons from "../../components/home/FilterButtons";
 
 function HomePage() {
   const [t] = useTranslation();
@@ -25,8 +28,8 @@ function HomePage() {
     fetch(config.products)
       .then(res => res.json())
       .then(json => {
-        setProducts(json || []);
-        setDbProducts(json || []);
+        setProducts(json.slice() || []);
+        setDbProducts(json.slice() || []);
         setLoading(false);
     })
 
@@ -36,28 +39,9 @@ function HomePage() {
     }, []);
 
   const reset= () => {
-    setProducts(dbProducts);
+    setProducts(dbProducts.slice());
   }
 
-  const sortAZ = () => {
-    products.sort((a, b) => a.name.localeCompare(b.name));
-    setProducts(products.slice());
-  }
-
-  const sortZA = () => {
-    products.sort((a, b) => b.name.localeCompare(a.name));
-    setProducts(products.slice());
-  }
-
-  const sortPriceAsc = () => {
-    products.sort((a, b) => a.price - b.price);
-    setProducts(products.slice());
-  }
-
-  const sortPriceDesc = () => {
-    products.sort((a, b) => b.price - a.price);
-    setProducts(products.slice());
-  }
 
   /* const filterCamping = () => {
     const compare = products.filter(product => product.category.match("camping"));
@@ -79,10 +63,7 @@ function HomePage() {
     setProducts(compare);
   } */
 
-  const filterByCategory = (categoryClicked) => {
-    const compare = dbProducts.filter(product => product.category === categoryClicked);
-    setProducts(compare);
-  }
+  
 
   const addToCart = (choosenProduct) => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -105,13 +86,14 @@ function HomePage() {
 
   return (
     <div>
+      <CarouselGallery />
       <div>{t("total-products")}: {products.length}</div>
       <Button variant="outline-dark" onClick={reset}>{t("reset")}</Button>
       <br /><br />
-      <Button variant="outline-dark" onClick={sortAZ}>{t("SortA-Z")}</Button>
-      <Button variant="outline-dark" onClick={sortZA}>{t("SortZ-A")}</Button>
-      <Button variant="outline-dark" onClick={sortPriceAsc}>{t("Sort price asc")}</Button>
-      <Button variant="outline-dark" onClick={sortPriceDesc}>{t("Sort price desc")}</Button>
+      <SortButtons 
+        products={products}
+        setProducts={setProducts}
+        />
       <br />
 {/*       <Button variant="outline-dark" onClick={() => filterByCategory("camping")}>{t("camping")}</Button>
       <Button variant="outline-dark" onClick={() => filterByCategory("tent")}>{t("tent")}</Button>
@@ -120,7 +102,10 @@ function HomePage() {
 
       <br /><br />
 
-      {categories.map(category => <Button key={category.name} variant="outline-dark" onClick={() => filterByCategory(category.name)}>{t(category.name)}</Button>)}
+      <FilterButtons 
+        dbProducts={dbProducts}
+        setProducts={setProducts}
+        categories={categories}/>
 
       <br /><br />
 
