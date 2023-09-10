@@ -31,7 +31,7 @@ function Employees() {
     }
 
     if (nameRef.current.value === "" || lastNameRef.current.value === "") {
-      toast("Please check employee name");
+      toast("Please add employee name");
       return;
     }
 
@@ -55,13 +55,17 @@ function Employees() {
       toast("Please add employee photo");
       return;
     }
-    employees.push({
+    const newEmployee = {
       id: Number(idRef.current.value),
       email: emailRef.current.value,
       first_name: nameRef.current.value,
       last_name: lastNameRef.current.value,
       avatar: avatarRef.current.value
-    })
+    }
+/*     setEmployees([...employees, newEmployee]); */
+    employees.push(newEmployee);
+    setEmployees(employees.slice());
+    toast("New employee was added!");
   }
 
   const deleteEmployee = (index) => {
