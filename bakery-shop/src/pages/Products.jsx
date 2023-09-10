@@ -44,8 +44,7 @@ function Products() {
         </tr>
         </thead>
         <tbody>
-        {/* TODO: Order the products by price */}
-        {products.map(product => 
+        {products.sort((a, b) => a.price - b.price).map(product => 
             <tr key={product.name + product.price}>
               <td>{product.name}</td>
               <td>{product.price}</td>
