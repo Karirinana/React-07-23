@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { Button, Table } from "react-bootstrap";
+import styles from '../css/Products.module.css';
 
 function Products() {
   const nameRef = useRef();
@@ -48,8 +49,7 @@ function Products() {
             <tr key={product.name + product.price}>
               <td>{product.name}</td>
               <td>{product.price}</td>
-              {/*  TODO: Display the quantity in red if it is lower than 3 */}
-              <td>{product.quantity}</td> 
+              <td className={`${product.quantity <= 3 ? styles.changeTextRed : ""}`}>{product.quantity}</td>
               <td>{product.store}</td>
             </tr>
           )}
