@@ -6,6 +6,7 @@ import styles from "../../css/MaintainProducts.module.css"
 import { Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
+import { ToastContainer, toast } from 'react-toastify';
 
 function MaintainProducts() {
   const [t] = useTranslation();
@@ -28,13 +29,14 @@ function MaintainProducts() {
   const searchedRef = useRef();
 
   const removeProduct = (productId) => {
-    const index = dbProducts.findIndex(product => product.id === productId)
+    const index = dbProducts.findIndex(product => product.id === productId);
     dbProducts.splice(index, 1);
-   /*  setProducts(dbProducts.slice()); */
-    searchFromProducts();
-    fetch(config.products, {method: "PUT", body: JSON.stringify(dbProducts)})
-    .then(() => {
-
+    fetch(config.products , {
+      method: "PUT",
+      body: JSON.stringify(dbProducts)
+    }).then(() => {
+      toast.warn(t("itemRemoved"));
+      searchFromProducts();
     })
   };
 
@@ -74,7 +76,7 @@ function MaintainProducts() {
               <td><img src={product.image} alt="" /></td>
               <td>{product.id}</td>
               <td>{product.name}</td>
-              <td>{product.price}</td>
+              <td>{product.price}$</td>
               <td>{product.category}</td>
               <td>{product.description}</td>
               <td>
@@ -88,6 +90,11 @@ function MaintainProducts() {
           </tbody>
         </table>
       </div>
+      <ToastContainer 
+      position="bottom-right"
+      autoClose={5000}
+      theme="colored"
+      />
     </div>
   );
 }
