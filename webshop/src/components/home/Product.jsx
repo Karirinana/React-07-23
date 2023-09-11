@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import styles from "../../css/HomePage.module.css"
+import { CartSumContext } from '../../store/CartSumContext';
 
 
 function Product({product}) {
     const [t] = useTranslation();
+    const { setCartSum } = useContext(CartSumContext);
 
     const addToCart = (choosenProduct) => {
         const cart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -18,15 +20,16 @@ function Product({product}) {
         } else {
           cart.push({"quantity" : 1, "product": choosenProduct});
         }  
-        
-        
         localStorage.setItem("cart", JSON.stringify(cart));
         toast(t("Item was added to the cart"));
+        let sum = 0;
+        cart.forEach((cartProduct) => (sum = sum + cartProduct.product.price * cartProduct.quantity));
+        setCartSum(sum.toFixed(2));
       };
     
   return (
     <div>
-         <div key={product.id} className={styles.product}>
+         <div className={styles.product}>
           <img src={product.image} alt="" />
           <div className={styles.name}>{product.name}</div>
           <div>{product.price} $</div>

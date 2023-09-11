@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from "react-router-dom";
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useTranslation } from 'react-i18next';
+import { CartSumContext } from '../store/CartSumContext';
+import { AuthContext } from '../store/AuthContext';
 
 function NavigationBar() {
     const { t, i18n } = useTranslation();
+    const { cartSum } = useContext(CartSumContext);
+    const { loggedIn, setLoggedIn } = useContext(AuthContext);
 
     const changeLanguageEN = () => {
         i18n.changeLanguage("en");
@@ -41,7 +45,7 @@ function NavigationBar() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link as={Link} to="/admin">{t("nav.admin")}</Nav.Link>
+              {loggedIn === true && <Nav.Link as={Link} to="/admin">{t("nav.admin")}</Nav.Link>}
               <Nav.Link as={Link} to="/contact">{t("nav.contact")}</Nav.Link>
               <Nav.Link as={Link} to="/shops">{t("nav.shops")}</Nav.Link>
             </Nav>
@@ -53,8 +57,11 @@ function NavigationBar() {
                 <img className="language" onClick={changeLanguageES} src="/spanish.png" alt="" />
                 <img className="language" onClick={changeLanguageRU} src="/russian.png" alt="" />
               </Nav.Link>
+              <div>{cartSum}</div>
               <Nav.Link as={Link} to="/cart">{t("nav.cart")}</Nav.Link>
-              <Nav.Link as={Link} to="/login">{t("nav.login")}</Nav.Link>
+              {loggedIn === false && <Nav.Link as={Link} to="/login">{t("nav.login")}</Nav.Link>}
+              {loggedIn === false && <Nav.Link as={Link} to="/signup">{t("nav.signup")}</Nav.Link>}
+              {loggedIn === true && <button onClick={[() => setLoggedIn(false), sessionStorage.removeItem("token")]}>Logout</button>}
             </Nav>
           </Navbar.Collapse>
         </Container>

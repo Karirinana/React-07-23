@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 //import cartFile from "../../data/cart.json";
 import { ToastContainer, toast } from "react-toastify";
 import { useTranslation } from 'react-i18next';
@@ -6,11 +6,13 @@ import styles from "../../css/Cart.module.css";
 import Button from 'react-bootstrap/Button';
 import ParcelMachines from "../../components/cart/ParcelMachines";
 import Payment from "../../components/cart/Payment";
+import { CartSumContext } from "../../store/CartSumContext";
 
 function Cart() {
   const {t} = useTranslation();
 
   const [cart, updateCart] = useState(JSON.parse(localStorage.getItem("cart") || "[]"));
+  const { setCartSum } = useContext(CartSumContext);
 
 /*   const addItem = (choosenItem) => {
     cart.push(choosenItem);
@@ -22,6 +24,7 @@ function Cart() {
     cart.splice(index, 1);
     updateCart(cart.slice());
     localStorage.setItem("cart", JSON.stringify(cart));
+    setCartSum(summedPrice);
   };
 
   const removeAll = () => {
@@ -29,6 +32,7 @@ function Cart() {
     updateCart(cart.slice());
     toast.success(t("Your cart was emptied successfully!"));
     localStorage.setItem("cart", JSON.stringify(cart));
+    setCartSum(summedPrice);
   };
 
   const decreaseQuantity = (index) => {
@@ -38,18 +42,20 @@ function Cart() {
     }
     updateCart(cart.slice());
     localStorage.setItem("cart", JSON.stringify(cart));
+    setCartSum(summedPrice);
   }
 
   const increaseQuantity = (index) => {
     cart[index].quantity++;
     updateCart(cart.slice());
     localStorage.setItem("cart", JSON.stringify(cart));
+    setCartSum(summedPrice);
   }
 
   const summedPrice = () => {
     let sum = 0;
     cart.forEach((cartProduct) => (sum = sum + cartProduct.product.price * cartProduct.quantity));
-    return sum;
+    return sum.toFixed(2);
   };
 
  
@@ -83,7 +89,7 @@ function Cart() {
       {cart.length > 0 && 
         <div className={styles.cart__bottom}>
           <ParcelMachines />
-          <div>{t("summary")}: {summedPrice().toFixed(2)} $</div>
+          <div>{t("summary")}: {summedPrice()} $</div>
           <Payment sum={summedPrice()} />
         </div>}
       {cart.length === 0 && <div>{t("cart-is-empty")}</div>}
