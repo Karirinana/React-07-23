@@ -14,16 +14,7 @@ function Banner() {
   const toRotate = ["Web Developer", "Web Designer", "UI/UX Designer"];
   const period = 200;
 
-  useEffect(() => {
-    let ticker = setInterval(() => {
-      tick();
-    }, delta);
-
-    return () => {
-      clearInterval(ticker);
-    };
-  }, [text]);
-
+  
   const tick = () => {
     let i = loopNum % toRotate.length;
     let fullText = toRotate[i];
@@ -45,7 +36,19 @@ function Banner() {
       setLoopNum(loopNum + 1);
       setDelta(500);
     }
-  };
+  }
+
+  useEffect(() => {
+    let ticker = setInterval(() => {
+      tick();
+    }, delta);
+
+    return () => {
+      clearInterval(ticker);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [delta, text]);
+
   return (
     <div>
       <section className="banner" id="home">
