@@ -37,6 +37,11 @@ function ShipmentDetails() {
     setShowModal(false);
   };
 
+  const deleteShipment = (index) => {
+    shipments.splice(index,1);
+    setShipments(shipments.slice());
+  }
+
   return (
     <div>
       {error && <div>Error: {error.message}</div>}
@@ -63,7 +68,7 @@ function ShipmentDetails() {
               <td>{shipment.consignee}</td>
               <td>
               <Button variant="light" onClick={() => handleOpenModal(shipment)}>More info</Button>
-                <Button variant="light">Delete</Button>
+                <Button variant="light" onClick={() => deleteShipment(index)}>Delete</Button>
               </td>
             </tr>
           ))}
