@@ -118,7 +118,7 @@ const handleReset = () => {
   ) {
     setStartingPlayer(previousGame.winner);
     setCurrentPlayerName(previousGame.winner);
-    setPlayerTurn(previousGame.winner === player_X ? player_O : player_X);
+    setPlayerTurn(player_X);
   } else {
     setStartingPlayer(players.player1Name);
     setCurrentPlayerName(players.player1Name);
@@ -136,6 +136,10 @@ const handleReset = () => {
     }
   ]);
 };
+
+
+  
+ 
 
   useEffect(() => {
     checkWinner(tiles, setStrikeClass, setGameState);
