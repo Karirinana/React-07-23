@@ -4,14 +4,17 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import NamesContextProvider from "./Contexts/NamesContext";
+import GameHistoryContextProvider from "./Contexts/GameHistoryContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <NamesContextProvider>
+      <GameHistoryContextProvider>
+        <NamesContextProvider>
           <App />
-      </NamesContextProvider>
+        </NamesContextProvider>
+      </GameHistoryContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

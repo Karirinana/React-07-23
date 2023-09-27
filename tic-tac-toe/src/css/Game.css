@@ -40,12 +40,12 @@ body {
   }
 
   .x-player {
-    color: #669BBC; 
+    color: #C1121F; 
   }
   
 
   .o-player {
-    color: #C1121F; 
+    color: #669BBC ; 
   }
   
   .x-hover:hover::after {
@@ -116,6 +116,14 @@ body {
     margin-top: 50px;
     font-size: 1.5em;
   }
+
+  .score-button {
+    margin-top: 50px;
+    background-color: #780000;
+    color: #FADB9E;
+    width: 100%;
+    font-size: 1.5em;
+  }
   
   .reset-button {
     margin-top: 50px;
@@ -124,4 +132,19 @@ body {
     color: #FADB9E;
     width: 100%;
     font-size: 1.5em;
+  }
+
+  .player-names {
+    display: flex; /* Use flexbox to align items horizontally */
+    justify-content: center; /* Center-align the items horizontally */
+    gap: 20px; /* Add some spacing between the names */
+  }
+  
+  .player-name {
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  .player-name.active {
+    text-decoration: underline;
   }

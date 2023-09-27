@@ -1,9 +1,31 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { NamesContext } from "../Contexts/NamesContext";
 import '../css/Names.css';
+import { useNavigate } from 'react-router-dom';
 
 function Names() {
-  const { player1Ref, player2Ref, message, gameStart } = useContext(NamesContext);
+  const {setPlayers} = useContext(NamesContext);
+
+  const navigate = useNavigate();
+
+  const player1Ref = useRef();
+  const player2Ref = useRef();
+
+  const [message, setMessage] = useState("");
+
+  const gameStart = (e) => {
+    e.preventDefault();
+    if (player1Ref.current.value === "" || player2Ref.current.value === "") {
+      setMessage("Please add your name");
+    } else {
+      setMessage("");
+      setPlayers({
+        player1Name: player1Ref.current.value,
+        player2Name: player2Ref.current.value,
+      });
+    navigate("/game");
+    }
+  };
 
   return (
     <div>
