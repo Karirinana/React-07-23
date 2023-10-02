@@ -7,7 +7,7 @@ import shipmentData from "../data/shipment.json";
 function ShipmentDetails() {
   const [shipments, setShipments] = useState([]);
   const [error, setError] = useState(null);
-  const [showModal, setShowModal] = useState(false); 
+  const [showModal, setShowModal] = useState(false);
   const [selectedShipment, setSelectedShipment] = useState(null);
 
   useEffect(() => {
@@ -38,9 +38,9 @@ function ShipmentDetails() {
   };
 
   const deleteShipment = (index) => {
-    shipments.splice(index,1);
+    shipments.splice(index, 1);
     setShipments(shipments.slice());
-  }
+  };
 
   return (
     <div>
@@ -67,8 +67,15 @@ function ShipmentDetails() {
               <td>{shipment.status}</td>
               <td>{shipment.consignee}</td>
               <td>
-              <Button variant="light" onClick={() => handleOpenModal(shipment)}>More info</Button>
-                <Button variant="light" onClick={() => deleteShipment(index)}>Delete</Button>
+                <Button
+                  variant="light"
+                  onClick={() => handleOpenModal(shipment)}
+                >
+                  More info
+                </Button>
+                <Button variant="light" onClick={() => deleteShipment(index)}>
+                  Delete
+                </Button>
               </td>
             </tr>
           ))}

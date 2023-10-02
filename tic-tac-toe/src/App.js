@@ -9,9 +9,9 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="" exact element={ <Navigate to="/names"/> }/>
-        <Route path="names" exact element={ <Names /> }/>
-        <Route path="game" exact element={ <Game /> }/>
-        <Route path="scoreboard" exact element={ <Scoreboard /> }/>
+        <Route path="/names" exact element={ <Names /> }/>
+        <Route path="/game" exact element={ <Game /> }/>
+        <Route path="/scoreboard" exact element={ <Scoreboard /> }/>
       </Routes>
     </div>
   );

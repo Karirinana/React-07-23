@@ -4,56 +4,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-
-body {
-  background-color: #FDF0D5;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-.welcomeHeader {
-  padding: 10vh;
-}
-
-h1, p, label, input {
   font-family: 'Raleway', sans-serif;
-  text-align: center;
 }
 
-p, label, input {
-  font-size: 18px;
-}
 
-.logo {
-  width: 25%;
-  height: auto;
-  float: right;
-  margin: 50px;
-}
 
-form {
-  padding: 5vh;
-  text-align: center;
-}
-
-label {
-display: block;
-margin-bottom: 8px;
-} 
-
-input {
-  width: 20%;
-  padding: 12px 20px;
-  margin-bottom: 12px;
-  box-sizing: border-box;
-}
-button {
-  display: block; 
-  margin: 0 auto;
-  font-size: 18px; 
-  padding: 10px 30px;
-}
 

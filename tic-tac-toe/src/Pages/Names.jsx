@@ -1,9 +1,17 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
+import { NamesContext } from "../Contexts/NamesContext";
+import '../css/Names.css';
+import { useNavigate } from 'react-router-dom';
 
 function Names() {
-  const [message, setMessage] = useState("");
+  const {setPlayers} = useContext(NamesContext);
+
+  const navigate = useNavigate();
+
   const player1Ref = useRef();
   const player2Ref = useRef();
+
+  const [message, setMessage] = useState("");
 
   const gameStart = (e) => {
     e.preventDefault();
@@ -11,9 +19,14 @@ function Names() {
       setMessage("Please add your name");
     } else {
       setMessage("");
-      
+      setPlayers({
+        player1Name: player1Ref.current.value,
+        player2Name: player2Ref.current.value,
+      });
+    navigate("/game");
     }
   };
+
   return (
     <div>
       <h1 className="welcomeHeader">Tic Tac Toe</h1>
@@ -29,10 +42,8 @@ function Names() {
         before the game starts.
       </p>
       <form action="">
-        <label>Player 1 name:</label>
-        <input ref={player1Ref} type="text" />
-        <label>Player 2 name:</label>
-        <input ref={player2Ref} type="text" />
+        <input ref={player1Ref} type="text" placeholder="Player 1 name:"  required/>
+        <input ref={player2Ref} type="text" placeholder="Player 2 name:" required/>
         <button onClick={gameStart}>Let's play</button>
         {message}
       </form>
