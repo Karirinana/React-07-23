@@ -1,0 +1,16 @@
+.key-info {
+    position: absolute;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: var(--twn-font);
+    text-align: center;
+    flex-direction: column;
+}
+
+.key-info h1 {
+    color: #14cc76;
+}

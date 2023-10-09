@@ -1,0 +1,22 @@
+.article-container {
+    position: absolute;
+    display: flex;
+    height: 100%;
+    width: 50%; /* Adjust the width as per your preference */
+    left: 50%; /* Move the container to the horizontal center */
+    top: 50%; /* Move the container to the vertical center */
+    transform: translate(-50%, -50%); /* Center the container */
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    flex-direction: column;
+}
+.button-amet{
+    background: #ff57a2;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 14px;
+    font-weight: 700;
+}

@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+  background-color: #3a3d57;
+  height: 100vh;
+  background-image: url(/assets/bg-deco-left.svg),
+    url(/assets/bg-deco-right.svg);
+  background-repeat: no-repeat;
+  background-position: bottom, 100% 0;
+  background-size: 150px, 250px;
+  background-attachment: fixed;
+}
+
