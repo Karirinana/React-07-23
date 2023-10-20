@@ -1,0 +1,47 @@
+.project {
+    padding: 0 0 50px 0;
+    position: relative;
+}
+
+.project-bx {
+    background: linear-gradient(90deg, rgba(224,96,126,1) 0%, rgba(211,96,96,1) 50%, rgba(224,96,126,1) 100%);
+    text-align: center;
+    padding: 60px 50px;
+    margin-top: -60px;
+}
+
+.project h2 {
+    font-size: 45px;
+    font-weight: 700;
+    margin-bottom: 3rem;
+}
+
+.projects a {
+    text-decoration: none;
+    color: #DBD3AD;
+} 
+
+.projects p {
+    font-size: 18px;
+    letter-spacing: 0.8px;
+    line-height: 1.5em;
+    color: #DBD3AD;
+} 
+
+.projects p:hover {
+    font-weight: 700;
+}
+
+.project-slider {
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.react-multiple-carousel__arrow {
+    background-color: rgba(219, 211, 173, .5);
+}
+
+.react-multiple-carousel__arrow:hover {
+    background-color: rgba(219, 211, 173);
+}

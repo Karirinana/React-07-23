@@ -3,9 +3,9 @@ import '../css/NavigationBar.css';
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import navIcon1 from "../assets/img/nav-icon1.svg";
-import navIcon2 from "../assets/img/nav-icon2.svg";
-import navIcon3 from "../assets/img/nav-icon3.svg";
+import navIcon1 from "../assets/img/technical/nav-icon1.svg";
+import navIcon2 from "../assets/img/technical/nav-icon2.svg";
+import navIcon3 from "../assets/img/technical/nav-icon3.svg";
 
 function NavBar() {
   const [activeLink, setActiveLink] = useState("home");
@@ -64,17 +64,26 @@ function NavBar() {
             >
               Projects
             </Nav.Link>
+            <Nav.Link
+              href="#hobbies"
+              className={
+                activeLink === "hobbies" ? "active navbar-link" : "navbar-link"
+              }
+              onClick={() => onUpdateActiveLink("hobbies")}
+            >
+              Hobbies
+            </Nav.Link>
           </Nav>
           <span className="navbar-text">
             <div className="social-icon">
               <a href="https://www.linkedin.com/in/karina-deroseva">
                 <img src={navIcon1} alt="LinkedIn" />
               </a>
-              <a href="https://www.instagram.com/der_karina/">
-                <img src={navIcon2} alt="Instagram" />
+              <a href="https://www.facebook.com/profile.php?id=100005517555747">
+                <img src={navIcon2} alt="Facebook" />
               </a>
-              <a href="https://github.com/Karirinana">
-                <img src={navIcon3} alt="GitHub" />
+              <a href="https://www.instagram.com/der_karina/">
+                <img src={navIcon3} alt="Instagram" />
               </a>
             </div>
             <button

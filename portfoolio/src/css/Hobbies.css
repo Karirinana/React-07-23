@@ -1,0 +1,14 @@
+.hobby { 
+    padding: 0 0 50px 0;
+    position: relative;
+}
+.hobby-bx {
+    text-align: center; 
+    margin: 0 auto;
+    height: 20vh
+}
+
+.hobby-bx a {
+    text-decoration: none;
+}
+
