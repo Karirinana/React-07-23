@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import '../css/NavigationBar.css';
+import React, { useState } from "react";
+import "../css/NavigationBar.css";
 import Container from "react-bootstrap/Container";
+import { HashLink } from 'react-router-hash-link';
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import navIcon1 from "../assets/img/technical/nav-icon1.svg";
@@ -9,20 +10,8 @@ import navIcon3 from "../assets/img/technical/nav-icon3.svg";
 
 function NavBar() {
   const [activeLink, setActiveLink] = useState("home");
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const onScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", onScroll);
-
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const scrolled = useState(false);
+  
 
   const onUpdateActiveLink = (value) => {
     setActiveLink(value);
@@ -32,7 +21,7 @@ function NavBar() {
     <Navbar expand="lg" className={scrolled ? "scrolled" : ""}>
       <Container>
         <Navbar.Brand href="#home">
-            <img className="logo" src="logo.png" alt="Logo" />
+          <img className="logo" src="logo.png" alt="Logo" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -56,7 +45,7 @@ function NavBar() {
               About
             </Nav.Link>
             <Nav.Link
-              href="#projects"
+              href="#project"
               className={
                 activeLink === "projects" ? "active navbar-link" : "navbar-link"
               }
@@ -65,12 +54,11 @@ function NavBar() {
               Projects
             </Nav.Link>
             <Nav.Link
-              href="#hobbies"
+              href="#hobby"
               className={
                 activeLink === "hobbies" ? "active navbar-link" : "navbar-link"
               }
-              onClick={() => onUpdateActiveLink("hobbies")}
-            >
+              onClick={() => onUpdateActiveLink("hobbies")}>
               Hobbies
             </Nav.Link>
           </Nav>
@@ -86,12 +74,13 @@ function NavBar() {
                 <img src={navIcon3} alt="Instagram" />
               </a>
             </div>
-            <button
-              className="contactMe"
-              onClick={() => console.log("connect")}
-            >
-              <span>Let's Connect</span>
-            </button>
+            <HashLink to='#connect'>
+              <button
+                className="contactMe"
+                onClick={() => console.log("connect")}>
+                <span>Let's Connect</span>
+              </button>
+            </HashLink>
           </span>
         </Navbar.Collapse>
       </Container>

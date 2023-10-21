@@ -1,26 +1,41 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import contactImg from "../assets/img/technical/contact-img.svg";
+import contactImg from "../assets/img/technical/fox.png";
+import emailjs from "@emailjs/browser";
+import '../css/Contact.css'
 
 function Contact() {
-  const formInitialDetails = {
-    first_name: "",
-    last_name: "",
-    email: "",
-    phone: "",
-    message: "",
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
+  const emailRef = useRef();
+  const messageRef = useRef();
+  const phoneRef = useRef();
+
+  const sendEmail = () => {
+    const data = {
+      from_name: firstNameRef.current.value,
+      from_lastName: lastNameRef.current.value,
+      from_email: emailRef.current.value,
+      message: messageRef.current.value,
+      phone: phoneRef.current.value,
+    };
+    emailjs
+      .send(
+        "service_fiuckll",
+        "template_ev2z9m3",
+        data.current,
+        "4Xn7nuR16n8gHXb2v"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   };
 
-  const [formDetails, setFormDetails] = useState(formInitialDetails);
-  const [submitButton, setSubmitButton] = useState("Send");
-  const [status, setStatus] = useState({});
-
-  const onFormUpdate = (category, value) => {
-    setFormDetails({
-      ...formDetails,
-      [category]: value,
-    });
-  };
   return (
     <section className="contact" id="connect">
       <Container>
@@ -35,34 +50,22 @@ function Contact() {
                 <Col sm={6} className="px-1">
                   <input
                     type="text"
-                    value={formDetails.first_name}
+                    ref={firstNameRef}
                     placeholder="First Name"
-                    onChange={(e) => onFormUpdate("first_name", e.target.value)}
                   />
                 </Col>
                 <Col sm={6} className="px-1">
                   <input
                     type="text"
-                    value={formDetails.last_name}
+                    ref={lastNameRef}
                     placeholder="Last Name"
-                    onChange={(e) => onFormUpdate("last_name", e.target.value)}
                   />
                 </Col>
                 <Col sm={6} className="px-1">
-                  <input
-                    type="email"
-                    value={formDetails.email}
-                    placeholder="Email"
-                    onChange={(e) => onFormUpdate("email", e.target.value)}
-                  />
+                  <input type="email" ref={emailRef} placeholder="Email" />
                 </Col>
                 <Col sm={6} className="px-1">
-                  <input
-                    type="tel"
-                    value={formDetails.phone}
-                    placeholder="Telephone"
-                    onChange={(e) => onFormUpdate("phone", e.target.value)}
-                  />
+                  <input type="tel" ref={phoneRef} placeholder="Telephone" />
                 </Col>
                 <Col>
                   <textarea
@@ -70,17 +73,13 @@ function Contact() {
                     id=""
                     cols="30"
                     rows="6"
-                    value={formDetails.message}
                     placeholder="Message"
-                    onChange={(e) => onFormUpdate("message", e.target.value)}
+                    ref={messageRef}
                   ></textarea>
-                  <button type="submit"><span>{submitButton}</span></button>
+                  <button type="submit" onClick={sendEmail}>
+                    <span>Send message</span>
+                  </button>
                 </Col>
-                { status.message && 
-                    <Col>
-                        <p className={status.success === false ? 'danger' : 'success'}>{status.message}</p>
-                    </Col>
-                }
               </Row>
             </form>
           </Col>

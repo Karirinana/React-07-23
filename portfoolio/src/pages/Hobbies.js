@@ -7,8 +7,8 @@ import photo from '../assets/img/Photo1.jpg';
 function Hobbies() {
   return (
       <section className='hobby' id='hobby'>
-        <h2>My hobbies</h2>
         <Container>
+        <h2>My hobbies</h2>
           <Row>
             <Col>
               <div className='hobby-bx'>

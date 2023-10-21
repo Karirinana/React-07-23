@@ -1,14 +1,34 @@
 .hobby { 
-    padding: 0 0 50px 0;
+    padding: 2rem 0;
     position: relative;
+    margin: 0 auto;
+}
+
+.hobby h2 {
+    font-size: 45px;
+	font-weight: 700;
+  text-align: center;
+  padding-bottom: 2rem;
 }
 .hobby-bx {
     text-align: center; 
     margin: 0 auto;
-    height: 20vh
 }
 
 .hobby-bx a {
     text-decoration: none;
 }
 
+.hobby-bx p {
+    color: #DBD3AD;
+    font-size: 18px;
+    letter-spacing: 0.8px;
+    line-height: 1.5em;
+    margin: 14px auto 30px auto;
+    text-align: center;
+    width: 56%;
+}
+
+.hobby-bx p:hover{
+    color: whitesmoke;
+}
